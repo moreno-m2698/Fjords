@@ -1,9 +1,10 @@
 package howlingabysstool.howlingabysstoolapi.service;
 
-import howlingabysstool.howlingabysstoolapi.domain.SummonerByName;
+import howlingabysstool.howlingabysstoolapi.domain.Summoner;
 
 public interface SummonerService {
-    public SummonerByName getSummonerByName(String name);
+    public Summoner getSummonerByName(String name);
+    public Summoner getSummonerByPuuid(String puuid);
 
 
 }

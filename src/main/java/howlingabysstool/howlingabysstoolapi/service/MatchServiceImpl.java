@@ -1,13 +1,8 @@
 package howlingabysstool.howlingabysstoolapi.service;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import howlingabysstool.howlingabysstoolapi.domain.Match;
-import howlingabysstool.howlingabysstoolapi.domain.SummonerByName;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
 
 @Service
 public class MatchServiceImpl implements MatchService{

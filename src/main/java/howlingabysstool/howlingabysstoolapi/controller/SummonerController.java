@@ -1,6 +1,6 @@
 package howlingabysstool.howlingabysstoolapi.controller;
 
-import howlingabysstool.howlingabysstoolapi.domain.SummonerByName;
+import howlingabysstool.howlingabysstoolapi.domain.Summoner;
 import howlingabysstool.howlingabysstoolapi.service.SummonerService;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ public class SummonerController {
         this.summonerService = summonerService;
     }
     @GetMapping("/summoner/{summonerName}")
-    public SummonerByName getData(@PathVariable String summonerName) {
+    public Summoner getData(@PathVariable String summonerName) {
 
         return summonerService.getSummonerByName(summonerName);
     }

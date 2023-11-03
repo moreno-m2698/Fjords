@@ -9,7 +9,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class SummonerByName {
+public class Summoner {
     private String puuid;
     private String name;
     private Integer profileIconId;
