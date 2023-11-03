@@ -15,12 +15,15 @@ public class SummonerController {
     public SummonerController(SummonerService summonerService) {
         this.summonerService = summonerService;
     }
-    @GetMapping("/summoner/{summonerName}")
-    public Summoner getData(@PathVariable String summonerName) {
+    @GetMapping("/summoner/by-name/{summonerName}")
+    public Summoner getSummonerByName(@PathVariable String summonerName) {
 
         return summonerService.getSummonerByName(summonerName);
     }
-
+    @GetMapping("/summoner/by-puuid/{puuid}")
+    public Summoner getSummonerByPuuid(@PathVariable String puuid){
+        return summonerService.getSummonerByPuuid(puuid);
+    }
     @GetMapping("/summoner/level/{summonerName}")
     public Integer getLevel(@PathVariable String summonerName) {
         return summonerService.getSummonerByName(summonerName).getSummonerLevel();
