@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 public class SummonerServiceImpl implements SummonerService{
 
     private final String apiUrl = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/";
-    private final String apiKey = "?api_key=RGAPI-dc4c4608-c6ec-415c-9b08-b270eee4f402";
+    private final String apiKey = "?api_key=RGAPI-02bbbd46-d396-4790-ae23-bd198677b0a6";
     private final RestTemplate restTemplate;
 
     public SummonerServiceImpl(RestTemplate restTemplate) {
@@ -24,7 +24,7 @@ public class SummonerServiceImpl implements SummonerService{
     }
     @Override
     public Summoner getSummonerByPuuid(String puuid) {
-        String fullApiUrl = apiUrl + "by-puuic/" + puuid + apiKey;
+        String fullApiUrl = apiUrl + "by-puuid/" + puuid + apiKey;
         return restTemplate.getForObject(fullApiUrl, Summoner.class);
     }
 }
