@@ -24,7 +24,7 @@ public class SummonerController {
     public Summoner getSummonerByPuuid(@PathVariable String puuid){
         return summonerService.getSummonerByPuuid(puuid);
     }
-    @GetMapping("/summoner/level/{summonerName}")
+    @GetMapping("/summoner/level/by-puuid/{summonerName}")
     public Integer getLevel(@PathVariable String summonerName) {
         return summonerService.getSummonerByName(summonerName).getSummonerLevel();
     }
