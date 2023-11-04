@@ -27,8 +27,8 @@ public class Match {
     @NoArgsConstructor
     @ToString
     public static class Info {
-        private String gameMode;
         private List<Participant> participants;
+        private int queueId; //450 means ARAM
 
         @Getter
         @Setter
