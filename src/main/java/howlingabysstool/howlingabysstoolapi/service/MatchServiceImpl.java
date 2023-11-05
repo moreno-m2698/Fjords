@@ -28,5 +28,7 @@ public class MatchServiceImpl implements MatchService{
     @Override
     public List<String> getMatchIdsByPuuid(String puuid, int amount) {
         String fullApiString = apiUrl + "by-puuid/" + puuid + "/ids?queue=" + ARAM + "&" + "&start=0&count=" + amount + apiKey;
+        List<String> matchIds = restTemplate.getForObject(fullApiString, List.class);
+        return matchIds;
     }
 }
