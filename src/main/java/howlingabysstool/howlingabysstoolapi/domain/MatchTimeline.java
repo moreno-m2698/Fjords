@@ -18,7 +18,7 @@ public class MatchTimeline {
     @Setter
     @NoArgsConstructor
     @ToString
-    public class Info {
+    public static class Info {
         private List<Frame> frames;
         private List<Participant> participants;
 
@@ -26,15 +26,15 @@ public class MatchTimeline {
         @Setter
         @NoArgsConstructor
         @ToString
-        public class Frame {
+        public static class Frame {
             private Map<String,ParticipantFrame> participantFrames;
-            private int timeStamp;
+            private int timestamp;
 
             @Getter
             @Setter
             @NoArgsConstructor
             @ToString
-            public class ParticipantFrame {
+            public static class ParticipantFrame {
                 private DamageStats damageStats;
                 private int totalGold;
 
@@ -42,7 +42,7 @@ public class MatchTimeline {
                 @Setter
                 @NoArgsConstructor
                 @ToString
-                public class DamageStats {
+                public static class DamageStats {
                     private int totalDamageDoneToChampions;
                     private int totalDamageTaken;
                 }
@@ -54,7 +54,7 @@ public class MatchTimeline {
         @Setter
         @NoArgsConstructor
         @ToString
-        public class Participant {
+        public static class Participant {
             private int participantId;
             private String puuid;
         }

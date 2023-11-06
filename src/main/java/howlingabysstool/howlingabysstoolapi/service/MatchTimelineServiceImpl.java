@@ -19,6 +19,7 @@ public class MatchTimelineServiceImpl implements MatchTimelineService {
     @Override
     public MatchTimeline getMatchTimeline(String matchId) {
         String apiUrl = apiString + matchId + "/timeline?api_key=" + myConfig.getRiotApi();
+        System.out.println(apiUrl);
         MatchTimeline matchTimeline = restTemplate.getForObject(apiUrl, MatchTimeline.class);
         return matchTimeline;
     }
