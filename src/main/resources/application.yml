@@ -1,0 +1,6 @@
+spring:
+  config:
+    activate:
+      on-profile: development
+name: Development Setup
+riotApi: RGAPI-dbeb1406-bca6-4e6c-a8b0-316dcaf770b0
