@@ -36,6 +36,7 @@ public class Match {
         @ToString
         public static class Participant {
             private int assists;
+            private Challenge challenges;
             private int championId;
             private String championName;
             private int deaths;
@@ -48,6 +49,17 @@ public class Match {
             private int item6;
             private int kills;
             private boolean win;
+
+            @Getter
+            @Setter
+            @NoArgsConstructor
+            @ToString
+            public static class Challenge{
+                private float kda;
+                private int poroExplosions;
+                private int snowballsHit;
+            }
+
         }
     }
 }
