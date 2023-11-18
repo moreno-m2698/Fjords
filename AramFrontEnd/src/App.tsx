@@ -5,6 +5,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import SummonerCard from "./components/SummonerCard";
+import MatchCard from "./components/MatchCard";
 
 
 function App() {
@@ -27,6 +29,8 @@ function App() {
           </Typography>
         </AccordionDetails>
       </Accordion>
+    <SummonerCard summonerName="keoP" />
+    <MatchCard />
   </>
   )
 }
