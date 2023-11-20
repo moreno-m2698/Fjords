@@ -18,6 +18,7 @@ function MatchCard() {
                 const championSquareEp: string = data.info.participants[participantIndex].championName + ".png";
                 const assetURL = await getChampionSquare(championSquareEp);
                 setAsset(assetURL);
+                
             }
 
             fetchData();
@@ -41,6 +42,7 @@ function MatchCard() {
         <p>Win: {match?.info.participants[participantIndex].win ? 'true' : 'false'}</p>
         <h2>Items:</h2>
         <p>1:{match?.info.participants[participantIndex].item0}</p>
+
         <p>2:{match?.info.participants[participantIndex].item1}</p>
         <p>3:{match?.info.participants[participantIndex].item2}</p>
         <p>4:{match?.info.participants[participantIndex].item3}</p>
