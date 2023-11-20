@@ -3,6 +3,7 @@ import { Summoner } from "../types";
 import { getSummonerDataByName } from "../api/backendApiCalls";
 import { AxiosResponse } from "axios";
 
+
 interface summonerCardProps {
   summonerName: string
 }
@@ -28,11 +29,14 @@ function SummonerCard(props: summonerCardProps) {
   return (
     <div className="summmoner">
       <h1>Summoner Card</h1>
-      <p>{summoner?.name}</p>
-      <p>{summoner?.profileIconId}, {summoner?.summonerLevel}</p>
-      
+      <p>Name:{summoner?.name}</p>
+      <p>Lvl:{summoner?.summonerLevel}</p>
+      <h2>Icon info:</h2>
+      <p>Id:{summoner?.profileIconId}</p>
+      <img alt="Summoner Icon" src={`https://ddragon.leagueoflegends.com/cdn/13.22.1/img/profileicon/${summoner?.profileIconId}.png`} />
     </div>
   )
 }
+
 
 export default SummonerCard

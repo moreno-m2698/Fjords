@@ -46,9 +46,7 @@ public class MatchTimeline {
                     private int totalDamageDoneToChampions;
                     private int totalDamageTaken;
                 }
-
             }
-
         }
         @Getter
         @Setter

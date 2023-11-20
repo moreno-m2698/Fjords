@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/match")
 public class MatchController {
     private final MatchService matchService;
 
@@ -17,7 +17,7 @@ public class MatchController {
         this.matchService = matchService;
     }
 
-    @GetMapping("/match/{matchId}")
+    @GetMapping("/{matchId}")
     public Match getData(@PathVariable String matchId) {
         return matchService.getMatchById(matchId);
     }

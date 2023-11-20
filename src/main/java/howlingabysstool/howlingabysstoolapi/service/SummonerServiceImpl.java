@@ -14,7 +14,6 @@ public class SummonerServiceImpl implements SummonerService{
     private YamlConfig myConfig;
 
     private final String apiUrl = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/";
-    private final String apiKey = "RGAPI-02bbbd46-d396-4790-ae23-bd198677b0a6";
     private final RestTemplate restTemplate;
 
     public SummonerServiceImpl(RestTemplate restTemplate) {

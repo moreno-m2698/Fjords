@@ -9,24 +9,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/summoner")
 public class SummonerController {
     private final SummonerService summonerService;
     public SummonerController(SummonerService summonerService) {
         this.summonerService = summonerService;
     }
-    @GetMapping("/summoner/by-name/{summonerName}")
+    @GetMapping("/by-name/{summonerName}") //This will be deprecated in favor of riot id's in the future
     public Summoner getSummonerByName(@PathVariable String summonerName) {
 
         return summonerService.getSummonerByName(summonerName);
     }
-    @GetMapping("/summoner/by-puuid/{puuid}")
+    @GetMapping("/by-puuid/{puuid}")
     public Summoner getSummonerByPuuid(@PathVariable String puuid){
         return summonerService.getSummonerByPuuid(puuid);
     }
-    @GetMapping("/summoner/level/by-name/{summonerName}")
+    @GetMapping("/level/by-name/{summonerName}")
     public Integer getLevel(@PathVariable String summonerName) {
         return summonerService.getSummonerByName(summonerName).getSummonerLevel();
     }
+
 
 }

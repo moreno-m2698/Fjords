@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/timeline")
 public class MatchTimelineController {
     private final MatchTimelineService matchTimelineService;
 
     public MatchTimelineController(MatchTimelineService matchTimelineService) {
         this.matchTimelineService = matchTimelineService;
     }
-    @GetMapping("/timeline/{matchId}")
+    @GetMapping("/{matchId}")
     public MatchTimeline getMatchTimeline(@PathVariable String matchId) {
         return matchTimelineService.getMatchTimeline(matchId);
     }

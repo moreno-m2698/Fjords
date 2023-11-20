@@ -4,9 +4,9 @@ import { AxiosResponse } from 'axios';
 import { getMatchDataById } from '../api/backendApiCalls';
 
 function MatchCard() {
-    const matchId = "NA1_481participantIndex448339";
+    const matchId = "NA1_4810448339";
     const [match, setMatch] = useState<Match|null>(null);
-    const [participantIndex, setParticipantIndex] =  useState<number>(participantIndex);
+    const [participantIndex] =  useState<number>(1);
     useEffect(
         () => {
             const fetchData = async () => {
@@ -25,7 +25,11 @@ function MatchCard() {
     <div>
         <h1>Match Card</h1>
         <p>KDA: {match?.info.participants[participantIndex].kills}/{match?.info.participants[participantIndex].deaths}/{match?.info.participants[participantIndex].assists}</p>
-        <p>Champion: {match?.info.participants[participantIndex].championId}</p>
+        <h2>Champion:</h2>
+        <p>Id: {match?.info.participants[participantIndex].championId}</p>
+        <p>Name: {match?.info.participants[participantIndex].championName}</p>
+        <img alt="Champion Image" src={`https://ddragon.leagueoflegends.com/cdn/13.22.1/img/champion/${match?.info.participants[participantIndex].championName}.png`}/>
+        {/* Fiddlesticks comes out as FiddleSticks thus we need logic to make sure that the end points are lining up for the images to show correctly | This issue will likely be same for void champions*/}
         <p>Win: {match?.info.participants[participantIndex].win ? 'true' : 'false'}</p>
         <h2>Items:</h2>
         <p>1:{match?.info.participants[participantIndex].item0}</p>
