@@ -2,21 +2,29 @@ import { useState, useEffect } from 'react';
 import { Match } from '../types';
 import { AxiosResponse } from 'axios';
 import { getMatchDataById } from '../api/backendApiCalls';
+import { getChampionSquare } from '../api/assetApiCalls';
 
 function MatchCard() {
     const matchId = "NA1_4810448339";
     const [match, setMatch] = useState<Match|null>(null);
     const [participantIndex] =  useState<number>(1);
+    const [asset, setAsset] = useState<any|null>(null);
     useEffect(
         () => {
             const fetchData = async () => {
                 const response: AxiosResponse<any, any>|undefined = await getMatchDataById(matchId);
                 const data: Match = response?.data;
                 setMatch(data);
+                const championSquareEp: string = data.info.participants[participantIndex].championName + ".png";
+                const assetURL = await getChampionSquare(championSquareEp);
+                setAsset(assetURL);
             }
 
             fetchData();
-            return () => alert("Goodbye match component")
+            return () => {
+                alert("Goodbye match component");
+                URL.revokeObjectURL(asset);
+            }
         },
         []
     )
@@ -28,7 +36,7 @@ function MatchCard() {
         <h2>Champion:</h2>
         <p>Id: {match?.info.participants[participantIndex].championId}</p>
         <p>Name: {match?.info.participants[participantIndex].championName}</p>
-        <img alt="Champion Image" src={`https://ddragon.leagueoflegends.com/cdn/13.22.1/img/champion/${match?.info.participants[participantIndex].championName}.png`}/>
+        <img alt="Champion Image" src={asset}/>
         {/* Fiddlesticks comes out as FiddleSticks thus we need logic to make sure that the end points are lining up for the images to show correctly | This issue will likely be same for void champions*/}
         <p>Win: {match?.info.participants[participantIndex].win ? 'true' : 'false'}</p>
         <h2>Items:</h2>
@@ -38,7 +46,8 @@ function MatchCard() {
         <p>4:{match?.info.participants[participantIndex].item3}</p>
         <p>5:{match?.info.participants[participantIndex].item4}</p>
         <p>6:{match?.info.participants[participantIndex].item5}</p>
-        <p>7:{match?.info.participants[participantIndex].item6}</p>       
+        <p>7:{match?.info.participants[participantIndex].item6}</p>
+        <p>HELLO</p>
     </div>
   )
 }

@@ -15,11 +15,12 @@ import java.nio.file.Paths;
 @RequestMapping("/api/asset")
 public class AssetController {
 
-    private static final String IMAGE_DIR = "../../../resources/ddragon/13.22.1.img/champion/";
+    private static final String IMAGE_DIR = ".\\src\\main\\resources\\ddragon\\13.22.1\\img\\champion";
 
-    @GetMapping("/{championName}")
+    @GetMapping("/square/{championName}")
     public ResponseEntity<byte[]> getChampionSquare(@PathVariable String championName) throws IOException {
         Path imagePath = Paths.get(IMAGE_DIR, championName);
+        System.out.println(imagePath);
         if (Files.exists(imagePath)) {
             byte[] imageBytes = Files.readAllBytes(imagePath);
 
