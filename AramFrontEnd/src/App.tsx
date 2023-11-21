@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SummonerCard from "./components/OverviewComponents/SummonerCard";
 import MatchCard from "./components/OverviewComponents/MatchCard";
+import Overview from "./components/OverviewComponents/Overview";
 
 
 function App() {
@@ -29,8 +30,7 @@ function App() {
           </Typography>
         </AccordionDetails>
       </Accordion>
-    <SummonerCard summonerName="keoP" />
-    <MatchCard />
+    <Overview summonerName="keoP"/>
   </>
   )
 }
