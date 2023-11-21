@@ -15,7 +15,7 @@ function MatchCard() {
                 const response: AxiosResponse<any, any>|undefined = await getMatchDataById(matchId);
                 const data: Match = response?.data;
                 setMatch(data);
-                const championSquareEp: string = data.info.participants[participantIndex].championName + ".png";
+                const championSquareEp: string = data.info.participants[participantIndex].championName;
                 const assetURL = await getChampionSquare(championSquareEp);
                 setAsset(assetURL);
                 
