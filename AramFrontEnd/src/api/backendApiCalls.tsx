@@ -43,3 +43,13 @@ export async function getMatchDataById( matchId: string ) {
         console.log(error);
     }
 }
+
+export async function getMatchIdsByPuuid( puuid: string, amount: number ) {
+    try {
+        const endpoint = "/api/match/request/" + amount + "/" + puuid;
+        const response = await axios.get(endpoint, {responseType: "json"});
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}

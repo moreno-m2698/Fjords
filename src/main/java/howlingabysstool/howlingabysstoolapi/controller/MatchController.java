@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/match")
 public class MatchController {
@@ -22,4 +24,8 @@ public class MatchController {
         return matchService.getMatchByMatchId(matchId);
     }
 
+    @GetMapping("/request/{amount}/{puuid}")
+    public List<String> getMatchIds(@PathVariable int amount, @PathVariable String puuid) {
+        return matchService.getAramMatchIdsByPuuid(puuid, amount);
+    }
 }
