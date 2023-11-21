@@ -3,6 +3,7 @@ import { Summoner } from '../../types';
 import { AxiosResponse } from 'axios';
 import { getSummonerDataByName } from '../../api/backendApiCalls';
 import SummonerCard from './SummonerCard';
+import MatchCard from './MatchCard';
 
 interface OverviewProps {
   summonerName: string
@@ -29,6 +30,7 @@ function Overview(props:OverviewProps) {
     <>
       <div>OverviewContextComponents</div>
       <SummonerCard summoner={summoner!} />
+      <MatchCard />
     </>
   )
 }
