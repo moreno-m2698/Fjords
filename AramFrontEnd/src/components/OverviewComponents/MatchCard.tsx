@@ -23,9 +23,7 @@ function MatchCard(props: MatchCardProps) {
                 const playerIndex = puuidList.indexOf(props.puuid!);
                 setParticipantIndex(playerIndex);
 
-                const championSquareEp: string = data.info.participants[participantIndex].championName;
-                const assetURL = await getChampionSquare(championSquareEp);
-                setAsset(assetURL);
+                
                 
             }
 
@@ -36,6 +34,17 @@ function MatchCard(props: MatchCardProps) {
             }
         },
         []
+    )
+    useEffect(
+        () => {
+            const fetchData = async () => {
+                const championSquareEp: string = match!.info.participants[participantIndex].championName;
+                const assetURL = await getChampionSquare(championSquareEp);
+                setAsset(assetURL);
+            }
+            fetchData();
+        },
+        [participantIndex]
     )
 
   return (
