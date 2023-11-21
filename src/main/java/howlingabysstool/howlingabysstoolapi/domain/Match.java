@@ -48,6 +48,9 @@ public class Match {
             private int item5;
             private int item6;
             private int kills;
+            private String riotIdName;
+            private String riotIdTagline;
+            private String summonerName;
             private boolean win;
 
             @Getter

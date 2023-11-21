@@ -5,8 +5,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import SummonerCard from "./components/SummonerCard";
-import MatchCard from "./components/MatchCard";
+import SummonerCard from "./components/OverviewComponents/SummonerCard";
+import MatchCard from "./components/OverviewComponents/MatchCard";
 
 
 function App() {

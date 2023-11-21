@@ -30,6 +30,9 @@ interface matchParticipant {
     item5: number,
     item6: number,
     kills: number,
+    riotIdName: string,
+    riotIdTagline: string,
+    summonerName:string,
     win: boolean
 }
 interface Challenges {

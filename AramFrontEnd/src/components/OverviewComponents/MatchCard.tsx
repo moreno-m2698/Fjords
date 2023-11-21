@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Match } from '../types';
+import { Match } from '../../types';
 import { AxiosResponse } from 'axios';
-import { getMatchDataById } from '../api/backendApiCalls';
-import { getChampionSquare } from '../api/assetApiCalls';
+import { getMatchDataById } from '../../api/backendApiCalls';
+import { getChampionSquare } from '../../api/assetApiCalls';
 
 function MatchCard() {
     const matchId = "NA1_4810448339";
