@@ -1,8 +1,4 @@
-import { useState, useEffect } from "react";
 import { Summoner } from "../../types";
-import { getSummonerDataByName } from "../../api/backendApiCalls";
-import { AxiosResponse } from "axios";
-
 
 interface summonerCardProps {
   summoner: Summoner
