@@ -19,7 +19,7 @@ public class MatchController {
 
     @GetMapping("/{matchId}")
     public Match getData(@PathVariable String matchId) {
-        return matchService.getMatchById(matchId);
+        return matchService.getMatchByMatchId(matchId);
     }
 
 }

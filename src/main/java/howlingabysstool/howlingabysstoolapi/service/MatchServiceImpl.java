@@ -16,22 +16,19 @@ public class MatchServiceImpl implements MatchService{
     private final String apiUrl = "https://americas.api.riotgames.com/lol/match/v5/matches/";
     private final RestTemplate restTemplate;
 
-    private final String ARAM = "450";
-
     public MatchServiceImpl(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
     @Override
-    public Match getMatchById(String matchId) {
+    public Match getMatchByMatchId(String matchId) {
         String fullApiUrl = apiUrl + matchId + "/?api_key=" + myConfig.getRiotApi();
         Match match = restTemplate.getForObject(fullApiUrl, Match.class);
         System.out.println(match);
         return match;
     }
     @Override
-    public List<String> getMatchIdsByPuuid(String puuid, int amount) {
-        String fullApiString = apiUrl + "by-puuid/" + puuid + "/ids?queue=" + ARAM + "&" + "&start=0&count=" + amount + "/?api_key=" + myConfig.getRiotApi();
-        List<String> matchIds = restTemplate.getForObject(fullApiString, List.class);
-        return matchIds;
+    public List<String> getAramMatchIdsByPuuid(String puuid, int amount) {
+        String fullApiString = apiUrl + "by-puuid/" + puuid + "/ids?queue=" + MatchQueueEnum.ARAM.queueId + "&" + "&start=0&count=" + amount + "/?api_key=" + myConfig.getRiotApi();
+        return restTemplate.getForObject(fullApiString, List.class);
     }
 }
