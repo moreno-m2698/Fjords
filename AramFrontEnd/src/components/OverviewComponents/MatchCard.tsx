@@ -4,10 +4,14 @@ import { AxiosResponse } from 'axios';
 import { getMatchDataById } from '../../api/backendApiCalls';
 import { getChampionSquare } from '../../api/assetApiCalls';
 
-function MatchCard() {
+interface MatchCardProps {
+    puuid?: string
+}
+
+function MatchCard(props: MatchCardProps) {
     const matchId = "NA1_4810448339";
     const [match, setMatch] = useState<Match|null>(null);
-    const [participantIndex] =  useState<number>(1);
+    const [participantIndex, setParticipantIndex] =  useState<number>(0);
     const [asset, setAsset] = useState<any|null>(null);
     useEffect(
         () => {
@@ -15,6 +19,10 @@ function MatchCard() {
                 const response: AxiosResponse<any, any>|undefined = await getMatchDataById(matchId);
                 const data: Match = response?.data;
                 setMatch(data);
+                const puuidList: string[] = data.metadata.participants;
+                const playerIndex = puuidList.indexOf(props.puuid!);
+                setParticipantIndex(playerIndex);
+
                 const championSquareEp: string = data.info.participants[participantIndex].championName;
                 const assetURL = await getChampionSquare(championSquareEp);
                 setAsset(assetURL);

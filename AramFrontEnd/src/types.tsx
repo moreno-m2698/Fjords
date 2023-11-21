@@ -1,7 +1,7 @@
 
 export interface Summoner {
-    puuid: String,
-    name: String,
+    puuid: string,
+    name: string,
     profileIconId: number,
     summonerLevel: number
 }
@@ -9,7 +9,7 @@ export interface Match {
     metadata: matchMetadata,
     info: matchInfo
 }
-interface matchMetadata {
+export interface matchMetadata {
     participants: string[]
 }
 interface matchInfo {

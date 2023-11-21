@@ -30,7 +30,7 @@ function Overview(props:OverviewProps) {
     <>
       <div>OverviewContextComponents</div>
       <SummonerCard summoner={summoner!} />
-      <MatchCard />
+      <MatchCard puuid={summoner?.puuid}/>
     </>
   )
 }
