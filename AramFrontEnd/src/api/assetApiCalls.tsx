@@ -13,17 +13,17 @@ export async function getChampionAsset( championName: string ) {
     }
 }
 
-export async function getItemAsset ( itemId: string ) {
-    try {
-        const endpoint = "/api/asset/item/" + itemId;
-        const response = await axios.get(endpoint, { responseType: "blob" });
+export const getItemAssetPromise = async (itemId: number) => {
+    const endpoint = "/api/asset/item/" + itemId;
+    return axios.get(endpoint, { responseType: "blob" }
+    ).then((response)=> {
         const imageBlob = new Blob([response.data], { type: "image/png" });
-        const imageURL = URL.createObjectURL(imageBlob)
-        return imageURL;
-    } catch (error) {
-        console.log(error);
-        return "";
-    }
+        const imageURL = URL.createObjectURL(imageBlob);
+        return imageURL
+    }).catch((error)=>
+        {console.log(error);
+        return("");}
+    );
 }
 
 

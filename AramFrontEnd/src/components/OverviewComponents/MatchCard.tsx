@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Match, matchParticipant } from '../../types';
 import { AxiosResponse } from 'axios';
 import { getMatchDataById } from '../../api/backendApiCalls';
-import { getChampionAsset } from '../../api/assetApiCalls';
+import { getChampionAsset, getItemAssetPromise } from '../../api/assetApiCalls';
 
 interface MatchCardProps {
     puuid?: string
@@ -12,7 +12,8 @@ function MatchCard(props: MatchCardProps) {
     const matchId = "NA1_4810448339";
     const [match, setMatch] = useState<Match|null>(null);
     const [participantIndex, setParticipantIndex] =  useState<number>(0);
-    const [asset, setAsset] = useState<any|null>(null);
+    const [championAssetUrl, setChampionAssetUrl] = useState<string>("");
+    const [itemAssetUrls, setItemAssetUrls] = useState<string[]>([]);
     useEffect(
         () => {
             const fetchData = async () => {
@@ -20,7 +21,7 @@ function MatchCard(props: MatchCardProps) {
                 const data: Match = response?.data;
                 setMatch(data);
                 const puuidList: string[] = data.metadata.participants;
-                const playerIndex = puuidList.indexOf(props.puuid!);
+                const playerIndex: number = puuidList.indexOf(props.puuid!);
                 setParticipantIndex(playerIndex);
 
                 
@@ -30,7 +31,8 @@ function MatchCard(props: MatchCardProps) {
             fetchData();
             return () => {
                 alert("Goodbye match component");
-                URL.revokeObjectURL(asset);
+                URL.revokeObjectURL(championAssetUrl);
+                itemAssetUrls.map(itemUrl => URL.revokeObjectURL(itemUrl));
             }
         },
         []
@@ -41,7 +43,7 @@ function MatchCard(props: MatchCardProps) {
                 const participant: matchParticipant = match!.info.participants[participantIndex];
                 const championSquareEp: string = participant.championName;
                 const championAssetUrl = await getChampionAsset(championSquareEp);
-                setAsset(championAssetUrl);
+                setChampionAssetUrl(championAssetUrl);
                 let itemIds: number[] = [
                     participant.item0,
                     participant.item1,
@@ -52,7 +54,8 @@ function MatchCard(props: MatchCardProps) {
                     participant.item6,
                 ];
                 itemIds = itemIds.filter(element => element != 0);
-                console.log(itemIds);
+                const itemUrls = await Promise.all(itemIds.map(itemId => getItemAssetPromise(itemId)));
+                setItemAssetUrls(itemUrls);
             }
             fetchData();
         },
@@ -66,19 +69,13 @@ function MatchCard(props: MatchCardProps) {
         <h2>Champion:</h2>
         <p>Id: {match?.info.participants[participantIndex].championId}</p>
         <p>Name: {match?.info.participants[participantIndex].championName}</p>
-        <img alt="Champion Image" src={asset}/>
+        <img alt="Champion Image" src={championAssetUrl}/>
         {/* Fiddlesticks comes out as FiddleSticks thus we need logic to make sure that the end points are lining up for the images to show correctly | This issue will likely be same for void champions*/}
         <p>Win: {match?.info.participants[participantIndex].win ? 'true' : 'false'}</p>
         <h2>Items:</h2>
-        <p>1:{match?.info.participants[participantIndex].item0}</p>
-
-        <p>2:{match?.info.participants[participantIndex].item1}</p>
-        <p>3:{match?.info.participants[participantIndex].item2}</p>
-        <p>4:{match?.info.participants[participantIndex].item3}</p>
-        <p>5:{match?.info.participants[participantIndex].item4}</p>
-        <p>6:{match?.info.participants[participantIndex].item5}</p>
-        <p>7:{match?.info.participants[participantIndex].item6}</p>
-        <p>HELLO</p>
+        <ol>
+            {itemAssetUrls.map(assetURl => <img src={assetURl}/>)}
+        </ol>
     </div>
   )
 }

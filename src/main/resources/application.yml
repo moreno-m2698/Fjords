@@ -3,4 +3,4 @@ spring:
     activate:
       on-profile: development
 name: Development Setup
-riotApi: RGAPI-9a22774e-4c9b-43bb-931c-2d1a196f3da8
+riotApi: RGAPI-7cb1faf3-6866-4bdd-bdfc-ab01c047b271
