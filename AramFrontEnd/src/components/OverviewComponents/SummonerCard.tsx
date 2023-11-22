@@ -20,6 +20,7 @@ function SummonerCard(props: summonerCardProps) {
     fetchData();
     return () => {
       alert("Goodbye summoner card")
+      URL.revokeObjectURL(profileImageUrl);
     }
   }, []
   )
