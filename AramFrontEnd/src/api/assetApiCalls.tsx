@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export async function getChampionSquare( championPng: string ) {
+export async function getChampionSquare( championName: string ) {
     try {
-        const endpoint =  "/api/asset/champion/" + championPng;
+        const endpoint =  "/api/asset/champion/" + championName;
         const response = await axios.get(endpoint, { responseType: "blob" });
         const imageBlob = new Blob([response.data], { type: "image/png" });
         const imageURL = URL.createObjectURL(imageBlob)
@@ -12,9 +12,9 @@ export async function getChampionSquare( championPng: string ) {
     }
 }
 
-export async function getItemAsset ( itemPng: string ) {
+export async function getItemAsset ( itemId: string ) {
     try {
-        const endpoint = "/api/asset/item/" + itemPng;
+        const endpoint = "/api/asset/item/" + itemId;
         const response = await axios.get(endpoint, { responseType: "blob" });
         const imageBlob = new Blob([response.data], { type: "image/png" });
         const imageURL = URL.createObjectURL(imageBlob)
