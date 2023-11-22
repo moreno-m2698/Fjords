@@ -5,7 +5,7 @@ export async function getChampionAsset( championName: string ) {
         const endpoint =  "/api/asset/champion/" + championName;
         const response = await axios.get(endpoint, { responseType: "blob" });
         const imageBlob = new Blob([response.data], { type: "image/png" });
-        const imageURL = URL.createObjectURL(imageBlob)
+        const imageURL = URL.createObjectURL(imageBlob);
         return imageURL;
     } catch (error) {
         console.log(error);
@@ -13,17 +13,30 @@ export async function getChampionAsset( championName: string ) {
     }
 }
 
-export const getItemAssetPromise = async (itemId: number) => {
+export const getItemAssetPromise = async ( itemId: number ) => {
     const endpoint = "/api/asset/item/" + itemId;
     return axios.get(endpoint, { responseType: "blob" }
-    ).then((response)=> {
+    ).then( (response) => {
         const imageBlob = new Blob([response.data], { type: "image/png" });
         const imageURL = URL.createObjectURL(imageBlob);
-        return imageURL
-    }).catch((error)=>
-        {console.log(error);
-        return("");}
+        return imageURL;
+    }).catch( (error) => {
+        console.log(error);
+        return "";}
     );
+}
+
+export async function getProfileIconAsset( profileId: number ) {
+    try {
+        const endpoint = "/api/asset/profileicon/" + profileId;
+        const response = await axios.get(endpoint, { responseType: "blob" });
+        const imageBlob = new Blob([response.data], { type: "image/png" });
+        const imageUrl = URL.createObjectURL(imageBlob);
+        return imageUrl;
+    } catch (error) {
+        console.log(error);
+        return "";
+    }
 }
 
 

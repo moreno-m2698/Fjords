@@ -33,7 +33,8 @@ function Overview(props:OverviewProps) {
   return (
     <>
       <div>OverviewContextComponents</div>
-      <SummonerCard summoner={summoner!} />
+      {/* These ternaries are safeguarding our ability to grab assets so there must be a solution that i need to implement in the useEffect, likely need to return a skeleton object in my calls*/}
+      {summoner ? <SummonerCard summoner={summoner} />: null}
       {summoner ? <MatchCard puuid={summoner.puuid}/> : null}
       <h2>Matches</h2>
       <p>{matchIdList}</p>

@@ -1,4 +1,6 @@
+import { useState, useEffect } from "react";
 import { Summoner } from "../../types";
+import { getProfileIconAsset } from "../../api/assetApiCalls";
 
 interface summonerCardProps {
   summoner: Summoner
@@ -7,6 +9,20 @@ interface summonerCardProps {
 //This is making correct call but talk to marcel about what i can do
 function SummonerCard(props: summonerCardProps) {
   
+  const [profileImageUrl, setProfileImageUrl] = useState<string>("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const profileIconId = props.summoner.profileIconId;
+      const profileIconAssetUrl = await getProfileIconAsset(profileIconId);
+      setProfileImageUrl(profileIconAssetUrl);
+    }
+    fetchData();
+    return () => {
+      alert("Goodbye summoner card")
+    }
+  }, []
+  )
   
 
   return (
@@ -16,7 +32,7 @@ function SummonerCard(props: summonerCardProps) {
       <p>Lvl:{props.summoner?.summonerLevel}</p>
       <h2>Icon info:</h2>
       <p>Id:{props.summoner?.profileIconId}</p>
-      <img alt="Summoner Icon" src={`https://ddragon.leagueoflegends.com/cdn/13.22.1/img/profileicon/${props.summoner?.profileIconId}.png`} />
+      <img alt="Summoner Icon" src={profileImageUrl} />
     </div>
   )
 }
