@@ -37,8 +37,6 @@ function Overview(props:OverviewProps) {
       {summoner ? <SummonerCard summoner={summoner} />: null}
       {/* {summoner ? <MatchCard puuid={summoner.puuid} matchId={matchId}/> : null} */}
       { summoner ? matchIdList.map((matchId) => { return <MatchCard key={matchId} puuid={summoner.puuid} matchId={matchId}/>}): null}
-      <h2>Matches</h2>
-
     </>
   )
 }
