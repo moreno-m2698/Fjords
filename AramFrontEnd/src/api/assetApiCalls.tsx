@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function getChampionSquare( championName: string ) {
+export async function getChampionAsset( championName: string ) {
     try {
         const endpoint =  "/api/asset/champion/" + championName;
         const response = await axios.get(endpoint, { responseType: "blob" });
@@ -9,6 +9,7 @@ export async function getChampionSquare( championName: string ) {
         return imageURL;
     } catch (error) {
         console.log(error);
+        return "";
     }
 }
 
@@ -21,6 +22,7 @@ export async function getItemAsset ( itemId: string ) {
         return imageURL;
     } catch (error) {
         console.log(error);
+        return "";
     }
 }
 

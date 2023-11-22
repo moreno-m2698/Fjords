@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Match } from '../../types';
+import { Match, matchParticipant } from '../../types';
 import { AxiosResponse } from 'axios';
 import { getMatchDataById } from '../../api/backendApiCalls';
-import { getChampionSquare } from '../../api/assetApiCalls';
+import { getChampionAsset } from '../../api/assetApiCalls';
 
 interface MatchCardProps {
     puuid?: string
@@ -38,9 +38,21 @@ function MatchCard(props: MatchCardProps) {
     useEffect(
         () => {
             const fetchData = async () => {
-                const championSquareEp: string = match!.info.participants[participantIndex].championName;
-                const assetURL = await getChampionSquare(championSquareEp);
-                setAsset(assetURL);
+                const participant: matchParticipant = match!.info.participants[participantIndex];
+                const championSquareEp: string = participant.championName;
+                const championAssetUrl = await getChampionAsset(championSquareEp);
+                setAsset(championAssetUrl);
+                let itemIds: number[] = [
+                    participant.item0,
+                    participant.item1,
+                    participant.item2,
+                    participant.item3,
+                    participant.item4,
+                    participant.item5,
+                    participant.item6,
+                ];
+                itemIds = itemIds.filter(element => element != 0);
+                console.log(itemIds);
             }
             fetchData();
         },

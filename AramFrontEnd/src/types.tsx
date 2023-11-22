@@ -16,7 +16,7 @@ interface matchInfo {
     participants: matchParticipant[],
     queueId: number
 }
-interface matchParticipant {
+export interface matchParticipant {
     assists: number,
     challenges: Challenges,
     championId: number,
