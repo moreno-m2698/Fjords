@@ -10,7 +10,7 @@ interface OverviewProps {
 }
 
 function Overview(props:OverviewProps) {
-
+  // const matchId = "NA1_4810448339";
   const [summoner, setSummmoner] = useState<Summoner|null>(null)
   const [matchIdList, setMatchIdList] = useState<string[]>([])
   useEffect(
@@ -35,9 +35,9 @@ function Overview(props:OverviewProps) {
       <div>OverviewContextComponents</div>
       {/* These ternaries are safeguarding our ability to grab assets so there must be a solution that i need to implement in the useEffect, likely need to return a skeleton object in my calls*/}
       {summoner ? <SummonerCard summoner={summoner} />: null}
-      {summoner ? <MatchCard puuid={summoner.puuid}/> : null}
+      {/* {summoner ? <MatchCard puuid={summoner.puuid} matchId={matchId}/> : null} */}
+      { summoner ? matchIdList.map((matchId) => { return <MatchCard key={matchId} puuid={summoner.puuid} matchId={matchId}/>}): null}
       <h2>Matches</h2>
-      <p>{matchIdList}</p>
 
     </>
   )
