@@ -6,7 +6,7 @@ function SummonerPage() {
   const { summonerName } = useParams();
     console.log(summonerName);
     return (
-    <Overview summonerName="keoP"/>
+    <Overview summonerName={summonerName!}/>
   );
 }
 
