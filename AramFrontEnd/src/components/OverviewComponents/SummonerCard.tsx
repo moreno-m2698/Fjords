@@ -21,9 +21,9 @@ function SummonerCard(props: summonerCardProps) {
     return () => {
       alert("Goodbye summoner card")
       URL.revokeObjectURL(profileImageUrl);
-    }
+    };
   }, []
-  )
+  );
   
 
   return (
@@ -35,8 +35,8 @@ function SummonerCard(props: summonerCardProps) {
       <p>Id:{props.summoner?.profileIconId}</p>
       <img alt="Summoner Icon" src={profileImageUrl} />
     </div>
-  )
+  );
 }
 
 
-export default SummonerCard
+export default SummonerCard;

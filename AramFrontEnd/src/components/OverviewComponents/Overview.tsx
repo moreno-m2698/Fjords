@@ -11,8 +11,8 @@ interface OverviewProps {
 
 function Overview(props:OverviewProps) {
   // const matchId = "NA1_4810448339";
-  const [summoner, setSummmoner] = useState<Summoner|null>(null)
-  const [matchIdList, setMatchIdList] = useState<string[]>([])
+  const [summoner, setSummmoner] = useState<Summoner|null>(null);
+  const [matchIdList, setMatchIdList] = useState<string[]>([]);
   useEffect(
     () => {
       const fetchData = async () => {
@@ -24,11 +24,11 @@ function Overview(props:OverviewProps) {
         setMatchIdList(idData);
       }
 
-      fetchData()
-      return () => alert('Goodbye summoner overview')
+      fetchData();
+      return () => alert('Goodbye summoner overview');
     },
     []
-  )
+  );
 
   return (
     <>
@@ -38,7 +38,7 @@ function Overview(props:OverviewProps) {
       {/* {summoner ? <MatchCard puuid={summoner.puuid} matchId={matchId}/> : null} */}
       { summoner ? matchIdList.map((matchId) => { return <MatchCard key={matchId} puuid={summoner.puuid} matchId={matchId}/>}): null}
     </>
-  )
+  );
 }
 
-export default Overview
+export default Overview;

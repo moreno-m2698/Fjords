@@ -31,10 +31,10 @@ function MatchCard(props: MatchCardProps) {
                 alert("Goodbye match component");
                 URL.revokeObjectURL(championAssetUrl);
                 itemAssetUrls.map(itemUrl => URL.revokeObjectURL(itemUrl));
-            }
+            };
         },
         []
-    )
+    );
     useEffect(
         () => {
             const fetchData = async () => {
@@ -57,7 +57,7 @@ function MatchCard(props: MatchCardProps) {
             fetchData();
         },
         [participantIndex]
-    )
+    );
 
   return (
     <div>
@@ -77,7 +77,7 @@ function MatchCard(props: MatchCardProps) {
             </ol>
         </> : null}
     </div>
-  )
+  );
 }
 
 export default MatchCard;
