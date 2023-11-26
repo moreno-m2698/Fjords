@@ -28,7 +28,7 @@ function MatchCard(props: MatchCardProps) {
 
             fetchData();
             return () => {
-                alert("Goodbye match component");
+                //alert("Goodbye match component");
                 URL.revokeObjectURL(championAssetUrl);
                 itemAssetUrls.map(itemUrl => URL.revokeObjectURL(itemUrl));
             };

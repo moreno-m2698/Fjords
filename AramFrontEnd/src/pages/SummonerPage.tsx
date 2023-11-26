@@ -4,7 +4,6 @@ import Overview from '../components/OverviewComponents/Overview';
 
 function SummonerPage() {
   const { summonerName } = useParams();
-    console.log(summonerName);
     return (
     <Overview summonerName={summonerName!}/>
   );

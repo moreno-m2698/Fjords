@@ -17,7 +17,7 @@ public class SummonerController {
     }
     @GetMapping("/by-name/{summonerName}") //This will be deprecated in favor of riot id's in the future
     public Summoner getSummonerByName(@PathVariable String summonerName) {
-
+        //Check for the status code and then return the same if it errors out
         return summonerService.getSummonerByName(summonerName);
     }
     @GetMapping("/by-puuid/{puuid}")

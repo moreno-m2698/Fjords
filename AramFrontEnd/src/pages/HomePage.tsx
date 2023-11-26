@@ -1,34 +1,42 @@
-import ButtonUsage from "../components/ButtonTemplate";
-import { TextField } from "@mui/material";
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+import { TextField, Button } from "@mui/material";
+import { useState } from "react";
+
 
 
 function HomePage() {
+  const [summonerName, setSummonerName] = useState<string>("");
+
+  const onSummonerInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSummonerName(e.target.value);
+  }
+
+  const onButtonClick = () => {
+    alert("clicked");
+    if (!summonerName) {
+      alert("Give a name");
+      return;
+    }
+    window.location.href = `http://localhost:8080/#/summoner/${summonerName}`;
+  }
+
   return (
     <>
-    <ButtonUsage />
-    <TextField id="summoner-input" label="Summoner" />
-    <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography>Accordion 1</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-    
-  </>
+      <h1>Home Page</h1>
+      <TextField 
+        id="summoner-input" 
+        label="Summoner Name" 
+        type="search"
+        value={summonerName}
+        onChange={onSummonerInputChange}
+      />
+      <Button
+        variant="contained"
+        onClick={onButtonClick}
+      >
+        Find Summoner
+      </Button>
+    </>
   );
 }
 
