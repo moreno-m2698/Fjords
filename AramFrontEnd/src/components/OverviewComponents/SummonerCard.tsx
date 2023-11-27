@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Summoner } from "../../types";
-import { getProfileIconAsset } from "../../api/assetApiCalls";
+import { getProfileIconAsset } from "../../services/assetApiCalls";
 
 interface summonerCardProps {
   summoner: Summoner

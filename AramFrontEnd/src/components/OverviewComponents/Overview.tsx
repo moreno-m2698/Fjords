@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Summoner } from '../../types';
 import { AxiosResponse } from 'axios';
-import { getMatchIdsByPuuid, getSummonerDataByName } from '../../api/backendApiCalls';
+import { getMatchIdsByPuuid, getSummonerDataByName } from '../../services/backendApiCalls';
 import SummonerCard from './SummonerCard';
 import MatchCard from './MatchCard';
 

@@ -22,7 +22,9 @@ public class SummonerServiceImpl implements SummonerService{
     @Override
     public Summoner getSummonerByName(String name) {
         String fullApiUrl = apiUrl + "by-name/"+ name + "?api_key=" + myConfig.getRiotApi();
+
         System.out.println(fullApiUrl);
+
         return restTemplate.getForObject(fullApiUrl, Summoner.class);
     }
     @Override

@@ -1,6 +1,8 @@
 import axios from "axios"
 // Can probably try some promise chaining in the future to get better at it
 
+//Have redirects for all functions that map me to users if they do not exist
+
 
 export async function getRiotAccountByRiotId( gameName: string, tagLine: string ){
     try {
@@ -8,6 +10,7 @@ export async function getRiotAccountByRiotId( gameName: string, tagLine: string 
         const response = await axios.get(endpoint, { responseType: "json" });
         return response;
     } catch (error) {
+
         console.log(error);
         return error;
     }
@@ -50,6 +53,16 @@ export async function getMatchIdsByPuuid( puuid: string, amount: number ) {
         const response = await axios.get(endpoint, {responseType: "json"});
         return response;
     } catch (error) {
+        console.log(error);
+    }
+}
+
+export async function getMatchTimelineByMatchId( matchId: string ) {
+    try {
+        const endpoint = "/api/timeline" + matchId;
+        const response = await axios.get(endpoint, { responseType: "json" });
+        return response;
+    } catch ( error ) { 
         console.log(error);
     }
 }

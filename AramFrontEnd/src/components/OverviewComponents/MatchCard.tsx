@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Match, matchParticipant } from '../../types';
 import { AxiosResponse } from 'axios';
-import { getMatchDataById } from '../../api/backendApiCalls';
-import { getChampionAsset, getItemAssetPromise } from '../../api/assetApiCalls';
+import { getMatchDataById } from '../../services/backendApiCalls';
+import { getChampionAsset, getItemAssetPromise } from '../../services/assetApiCalls';
 
 interface MatchCardProps {
     puuid?: string,
