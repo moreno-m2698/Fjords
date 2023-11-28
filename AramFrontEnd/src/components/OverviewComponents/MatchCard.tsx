@@ -5,7 +5,7 @@ import { getMatchDataById } from '../../services/backendApiCalls';
 import { getChampionAsset, getItemAssetPromise } from '../../services/assetApiCalls';
 
 interface MatchCardProps {
-    puuid?: string,
+    puuid: string,
     matchId: string
 }
 
