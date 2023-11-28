@@ -6,7 +6,7 @@ interface summonerCardProps {
   summoner: Summoner
 }
 
-//This is making correct call but talk to marcel about what i can do
+
 function SummonerCard(props: summonerCardProps) {
   
   const [profileImageUrl, setProfileImageUrl] = useState<string>("");

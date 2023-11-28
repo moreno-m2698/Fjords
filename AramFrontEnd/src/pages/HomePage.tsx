@@ -12,7 +12,7 @@ function HomePage() {
   }
 
   const onButtonClick = () => {
-    alert("clicked");
+ 
     if (!summonerName) {
       alert("Give a name");
       return;

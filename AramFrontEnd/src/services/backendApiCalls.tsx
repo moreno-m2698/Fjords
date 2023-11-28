@@ -27,6 +27,14 @@ export async function getSummonerDataByName( summonerName: string ) {
     }
 }
 
+export function getSummonerDataByNamePromise( summmonerName: string ) {
+    const endpoint = "/api/summoner/by-puuid/";
+    return axios
+        .get(endpoint, { responseType: "json" })
+        .then( response => response.data )
+        .catch((error) => console.log("Error grabbing summoner data:" + error))
+}
+
 export async function getSummonerDataByPuuid( puuid: string ) {
     try {
         const endpoint = "/api/summoner/by-puuid/" + puuid;

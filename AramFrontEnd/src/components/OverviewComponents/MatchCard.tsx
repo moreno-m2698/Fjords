@@ -73,7 +73,7 @@ function MatchCard(props: MatchCardProps) {
             <p>Win: {match?.info.participants[participantIndex].win ? 'true' : 'false'}</p>
             <h2>Items:</h2>
             <ol>
-                {itemAssetUrls.map(assetURl => <img src={assetURl}/>)}
+                { itemAssetUrls.map(assetURl => <img src={assetURl}/>) }
             </ol>
         </> : null}
     </div>
