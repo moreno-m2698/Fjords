@@ -4,6 +4,9 @@ import { getSummonerByName, getMatchIdsByPuuid } from '../services/backendApiCal
 import SummonerCard from '../components/OverviewComponents/SummonerCard';
 import MatchCard from '../components/OverviewComponents/MatchCard';
 
+//IMPORTANT: Somthing is happening where we are making the query calls twice
+
+
 function SummonerPage() {
   const { summonerName } = useParams();
 
