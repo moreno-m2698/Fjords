@@ -41,3 +41,26 @@ interface Challenges {
     snowballsHit: number
 }
 
+export interface timeline {
+    frames: timelineFrame[],
+    participants: timelineParticipant[]
+}
+
+interface timelineFrame {
+    participantFrames: Map<string, timelineParticipantFrame>,
+    timestamp: number
+}
+
+interface timelineParticipantFrame {
+    damageStats: timelineDamageStats,
+    totalGold: number
+}
+
+interface timelineDamageStats {
+    totalDamageDoneToChampions: number,
+    totalDamageTaken: number
+}
+interface timelineParticipant {
+    participantId: number,
+    puuid: string
+}
