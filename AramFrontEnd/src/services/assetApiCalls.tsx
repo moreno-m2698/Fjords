@@ -8,8 +8,8 @@ export async function getChampionAsset( championName: string ) {
         const imageURL = URL.createObjectURL(imageBlob);
         return imageURL;
     } catch (error) {
-        console.log(error);
-        return "";
+        console.log("There was an error grabbing asset for: " + championName + " : " + error);
+        
     }
 }
 
@@ -21,9 +21,8 @@ export const getItemAssetPromise = async ( itemId: number ) => {
         const imageURL = URL.createObjectURL(imageBlob);
         return imageURL;
     }).catch( (error) => {
-        console.log(error);
-        return "";}
-    );
+        console.log("There was an error grabbing asset for: " + itemId + " : " + error);
+    });
 }
 
 export async function getProfileIconAsset( profileId: number ) {

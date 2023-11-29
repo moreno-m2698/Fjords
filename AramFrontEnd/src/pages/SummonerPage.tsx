@@ -1,11 +1,13 @@
 import { useParams } from 'react-router-dom'
 import { useQuery } from "@tanstack/react-query"
-import { getSummonerDataByNamePromise, getMatchIdsByPuuidPromise } from '../services/backendApiCalls';
+import { getSummonerByName, getMatchIdsByPuuid } from '../services/backendApiCalls';
 import SummonerCard from '../components/OverviewComponents/SummonerCard';
 import MatchCard from '../components/OverviewComponents/MatchCard';
 
 function SummonerPage() {
   const { summonerName } = useParams();
+
+  const matchLength = 5;
 
   const {
     status: statusSummoner,
@@ -13,7 +15,7 @@ function SummonerPage() {
     data: summoner
   } = useQuery({
     queryKey: ["summoner", summonerName],
-    queryFn: () => getSummonerDataByNamePromise(summonerName!)
+    queryFn: () => getSummonerByName(summonerName!)
   }) 
 
   const { 
@@ -22,18 +24,18 @@ function SummonerPage() {
   } = useQuery({
     enabled: summoner?.puuid != null,
     queryKey: ["matchIds", summoner?.puuid],
-    queryFn: () => getMatchIdsByPuuidPromise(summoner!.puuid, 20)
+    queryFn: () => getMatchIdsByPuuid(summoner!.puuid, matchLength)
   })
 
   if (statusSummoner === "pending") return <h1>Loading Summoner...</h1>
   if (statusSummoner=== "error") return <h1>{JSON.stringify(errorSummoner)}</h1>
-
+  console.log(matchIds);
   return (
     <>
-      <SummonerCard summoner={summoner} />
+      <SummonerCard summoner={summoner!} />
 
-      { statusMatchIds === "success" ? matchIds.map((matchId: string) => (
-        <MatchCard key={matchId} puuid={summoner.puuid} matchId={matchId} />
+      { statusMatchIds === "success" ? matchIds!.map((matchId: string) => (
+        <MatchCard key={matchId} puuid={summoner!.puuid} matchId={matchId} />
       )): null}
     </>
   );
