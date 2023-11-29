@@ -1,6 +1,6 @@
-import { getMatchByMatchId } from '../../services/backendApiCalls';
+import { getMatchByMatchId, getMatchTimelineByMatchId } from '../../services/backendApiCalls';
 import { useQuery } from "@tanstack/react-query"
-import { getChampionAsset, getItemAssetFromItemId } from '../../services/assetApiCalls';
+import { getChampionAsset } from '../../services/assetApiCalls';
 import InventoryComponent from './InventoryComponent';
 import { Accordion, AccordionSummary, AccordionDetails, Typography } from "@mui/material"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
@@ -34,8 +34,19 @@ function MatchCard(props: MatchCardProps) {
         queryFn: () => getChampionAsset(match!.info.participants[playerIndex!].championName)
     })
 
+    const {
+        status: statusTimeline,
+        error: errorTimeline,
+        data: timeline
+    } = useQuery({
+        queryKey: ["timeline", props.matchId],
+        queryFn: () => getMatchTimelineByMatchId(props.matchId)
+    })
+
     if (statusMatch==="pending" || playerIndex === undefined || puuidList === undefined) return <h1>Loading Match... {props.matchId}</h1>
     if (statusMatch==="error") return <h1>{JSON.stringify(errorMatch)}</h1>
+    if (statusTimeline ==="pending" || statusTimeline==="error") return <h1>Trying timeline</h1>
+    console.log(timeline)
 
     const items = [
         match?.info.participants[playerIndex].item0!,

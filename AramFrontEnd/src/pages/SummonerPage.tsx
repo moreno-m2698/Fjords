@@ -12,7 +12,7 @@ import MatchCard from '../components/OverviewComponents/MatchCard';
 function SummonerPage() {
   const { summonerName } = useParams();
 
-  const matchLength = 5;
+  const matchLength = 2;
 
   const {
     status: statusSummoner,
