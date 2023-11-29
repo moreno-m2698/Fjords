@@ -6,6 +6,8 @@ import MatchCard from '../components/OverviewComponents/MatchCard';
 
 //IMPORTANT: Somthing is happening where we are making the query calls twice
 
+//React query still causes us to download imgs to client on each call, maybe we should try hosting assets in a repo instead.
+
 
 function SummonerPage() {
   const { summonerName } = useParams();

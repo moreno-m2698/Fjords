@@ -2,6 +2,8 @@ import { getMatchByMatchId } from '../../services/backendApiCalls';
 import { useQuery } from "@tanstack/react-query"
 import { getChampionAsset, getItemAssetFromItemId } from '../../services/assetApiCalls';
 import InventoryComponent from './InventoryComponent';
+import { Accordion, AccordionSummary, AccordionDetails, Typography } from "@mui/material"
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 
 interface MatchCardProps {
     puuid: string,
@@ -48,13 +50,23 @@ function MatchCard(props: MatchCardProps) {
 
   return (
     <div>
-            <h1>{props.matchId}</h1>
-            <p>KDA: {match?.info.participants[playerIndex].kills}/{match?.info.participants[playerIndex].deaths}/{match?.info.participants[playerIndex].assists}</p>
-            <h2>Champion:</h2>
-            <p>Name: {match?.info.participants[playerIndex!].championName}</p>
-            <img alt="Champion Image" src={championAssetUrl}/>
-            <p>Win: {match?.info.participants[playerIndex!].win ? 'true' : 'false'}</p>
-            <InventoryComponent inventory={items} />
+
+            
+            <Accordion>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography>
+                        <h1>{props.matchId}</h1>
+                            <p>KDA: {match?.info.participants[playerIndex].kills}/{match?.info.participants[playerIndex].deaths}/{match?.info.participants[playerIndex].assists}</p>
+                            <h2>Champion:</h2>
+                            <p>Name: {match?.info.participants[playerIndex!].championName}</p>
+                            <img alt="Champion Image" src={championAssetUrl}/>
+                            <p>Win: {match?.info.participants[playerIndex!].win ? 'true' : 'false'}</p>
+                    </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <InventoryComponent inventory={items} />
+                </AccordionDetails>
+            </Accordion>
     </div>
   );
 }
