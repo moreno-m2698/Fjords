@@ -1,6 +1,7 @@
 import { getMatchByMatchId } from '../../services/backendApiCalls';
 import { useQuery } from "@tanstack/react-query"
-import { getChampionAsset } from '../../services/assetApiCalls';
+import { getChampionAsset, getItemAssetFromItemId } from '../../services/assetApiCalls';
+import InventoryComponent from './InventoryComponent';
 
 interface MatchCardProps {
     puuid: string,
@@ -8,9 +9,6 @@ interface MatchCardProps {
 }
 
 function MatchCard(props: MatchCardProps) {
-
-    // const [championAssetUrl, setChampionAssetUrl] = useState<string>("");
-    // const [itemAssetUrls, setItemAssetUrls] = useState<string[]>([]);
 
     const {
         status: statusMatch,
@@ -22,13 +20,8 @@ function MatchCard(props: MatchCardProps) {
 
     })
 
-
-
     const puuidList = match?.metadata.participants;
-
     const playerIndex = puuidList?.indexOf(props.puuid!);
-
-
     const {
         status: statusChampionAssetUrl,
         error: errorChampionAssetUrl,
@@ -38,45 +31,30 @@ function MatchCard(props: MatchCardProps) {
         queryKey: ["championAsset", match?.info.participants[playerIndex!].championName],
         queryFn: () => getChampionAsset(match!.info.participants[playerIndex!].championName)
     })
-    //I think i need to make a query for each item....
-
-    // useEffect(
-    //     () => {
-    //         const fetchData = async () => {
-    //             const participant: matchParticipant = match!.info.participants[playerIndex!];
-    //             const championSquareEp: string = participant.championName;
-    //             const championAssetUrl = await getChampionAsset(championSquareEp);
-    //             setChampionAssetUrl(championAssetUrl);
-    //             let itemIds: number[] = [
-    //                 participant.item0,
-    //                 participant.item1,
-    //                 participant.item2,
-    //                 participant.item3,
-    //                 participant.item4,
-    //                 participant.item5,
-    //                 participant.item6,
-    //             ].filter(element => element != 0);
-    //             const itemUrls = await Promise.all(itemIds.map(itemId => getItemAssetPromise(itemId)));
-    //             setItemAssetUrls(itemUrls);
-    //         }
-    //         fetchData();
-    //     },
-    //     [playerIndex]
-    // );
 
     if (statusMatch==="pending" || playerIndex === undefined || puuidList === undefined) return <h1>Loading Match... {props.matchId}</h1>
     if (statusMatch==="error") return <h1>{JSON.stringify(errorMatch)}</h1>
 
+    const items = [
+        match?.info.participants[playerIndex].item0!,
+        match?.info.participants[playerIndex].item1!,
+        match?.info.participants[playerIndex].item2!,
+        match?.info.participants[playerIndex].item3!,
+        match?.info.participants[playerIndex].item4!,
+        match?.info.participants[playerIndex].item5!,
+        match?.info.participants[playerIndex].item6!,
+    ].filter((itemId) => itemId !== 0);
+    console.log(items);
 
   return (
     <div>
             <h1>{props.matchId}</h1>
             <p>KDA: {match?.info.participants[playerIndex].kills}/{match?.info.participants[playerIndex].deaths}/{match?.info.participants[playerIndex].assists}</p>
             <h2>Champion:</h2>
-            <p>Id: {match?.info.participants[playerIndex!].championId}</p>
             <p>Name: {match?.info.participants[playerIndex!].championName}</p>
             <img alt="Champion Image" src={championAssetUrl}/>
             <p>Win: {match?.info.participants[playerIndex!].win ? 'true' : 'false'}</p>
+            <InventoryComponent inventory={items} />
             {/* <h2>Items:</h2>
             <ol>
                 { itemAssetUrls.map(assetURl => <img src={assetURl}/>) }

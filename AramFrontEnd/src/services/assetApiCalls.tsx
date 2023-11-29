@@ -25,6 +25,17 @@ export const getItemAssetPromise = async ( itemId: number ) => {
     });
 }
 
+export async function getItemAssetFromItemId( itemId: number ){
+    const endpoint = "/api/asset/item/" + itemId;
+    try {
+        const response = await axios.get(endpoint, { responseType: "blob" });
+        const imageBlob = new Blob([response.data], { type: "image/png" });
+        return URL.createObjectURL(imageBlob);
+    } catch (error) {
+        console.log("There was an error grabbing asset for: " + itemId + " : " + error);
+    }
+}
+
 export async function getProfileIconAsset( profileId: number ) {
     try {
         const endpoint = "/api/asset/profileicon/" + profileId;
