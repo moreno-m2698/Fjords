@@ -16,12 +16,7 @@ function InventoryComponent(props:InventoryComponentProps) {
       }
     })
   })
-
-  inventoryQueries.map((itemQuery) => <img src={itemQuery.data}/>)
   
-
-
-
   return (
     <ol>
       {inventoryQueries.map((itemQuery) => <img src={itemQuery.data}/>)}
