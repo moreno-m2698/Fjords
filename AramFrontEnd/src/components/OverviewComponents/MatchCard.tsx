@@ -55,10 +55,6 @@ function MatchCard(props: MatchCardProps) {
             <img alt="Champion Image" src={championAssetUrl}/>
             <p>Win: {match?.info.participants[playerIndex!].win ? 'true' : 'false'}</p>
             <InventoryComponent inventory={items} />
-            {/* <h2>Items:</h2>
-            <ol>
-                { itemAssetUrls.map(assetURl => <img src={assetURl}/>) }
-            </ol> */}
     </div>
   );
 }

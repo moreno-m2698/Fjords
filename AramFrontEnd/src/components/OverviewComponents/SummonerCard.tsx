@@ -1,39 +1,32 @@
-import { useState, useEffect } from "react";
 import { Summoner } from "../../types";
 import { getProfileIconAsset } from "../../services/assetApiCalls";
+import { useQuery } from "@tanstack/react-query";
+
 
 interface summonerCardProps {
   summoner: Summoner
 }
 
-
 function SummonerCard(props: summonerCardProps) {
-  
-  const [profileImageUrl, setProfileImageUrl] = useState<string>("");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const profileIconId = props.summoner.profileIconId;
-      const profileIconAssetUrl = await getProfileIconAsset(profileIconId);
-      setProfileImageUrl(profileIconAssetUrl);
-    }
-    fetchData();
-    return () => {
-      //alert("Goodbye summoner card")
-      URL.revokeObjectURL(profileImageUrl);
-    };
-  }, []
-  );
-  
+  const {
+    status: statusProfileAsset,
+    error: errorProfileAsset,
+    data: profileAsset
+  } = useQuery({
+    queryKey: ["profileAsset", props.summoner.profileIconId],
+    queryFn: () => getProfileIconAsset(props.summoner.profileIconId)
+  })
+
+  if (statusProfileAsset==="pending") return <h1>Loading Profile...</h1>
+  if (statusProfileAsset === "error") return <h1>Error: {JSON.stringify(errorProfileAsset)}</h1>
 
   return (
     <div className="summmoner">
       <h1>Summoner Card</h1>
       <p>Name:{props.summoner?.name}</p>
       <p>Lvl:{props.summoner?.summonerLevel}</p>
-      <h2>Icon info:</h2>
-      <p>Id:{props.summoner?.profileIconId}</p>
-      <img alt="Summoner Icon" src={profileImageUrl} />
+      <img alt="Summoner Icon" src={profileAsset} />
     </div>
   );
 }
