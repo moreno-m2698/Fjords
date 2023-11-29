@@ -41,7 +41,7 @@ interface Challenges {
     snowballsHit: number
 }
 
-export interface timeline {
+export interface Timeline {
     frames: timelineFrame[],
     participants: timelineParticipant[]
 }

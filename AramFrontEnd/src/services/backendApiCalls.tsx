@@ -1,6 +1,6 @@
 import axios from "axios";
 import { AxiosResponse } from "axios";
-import { Summoner, Match } from "../types";
+import { Summoner, Match, Timeline } from "../types";
 //Have redirects for all functions that map me to users if they do not exist
 // export async function getRiotAccountByRiotId( gameName: string, tagLine: string ){
 //     try {
@@ -57,10 +57,10 @@ export async function getMatchByMatchId( matchId: string ) {
 
 export async function getMatchTimelineByMatchId( matchId: string ) {
     try {
-        const endpoint = "/api/timeline" + matchId;
-        const response = await axios.get(endpoint, { responseType: "json" });
-        return response;
+        const endpoint = "/api/timeline/" + matchId;
+        const response: AxiosResponse<Timeline, any> = await axios.get(endpoint, { responseType: "json" });
+        return response.data;
     } catch ( error ) { 
-        console.log(error);
+        console.log("There was an error grabbing timeline for this match: " + matchId + " : " + error);
     }
 }
