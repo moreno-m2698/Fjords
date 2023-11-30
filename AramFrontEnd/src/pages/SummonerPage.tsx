@@ -34,6 +34,7 @@ function SummonerPage() {
 
   if (statusSummoner === "pending") return <h1>Loading Summoner...</h1>
   if (statusSummoner=== "error") return <h1>{JSON.stringify(errorSummoner)}</h1>
+  //keep ths log here until we figure out the double render
   console.log(matchIds);
   return (
     <>
