@@ -1,7 +1,6 @@
 package howlingabysstool.howlingabysstoolapi.controller;
 
 import howlingabysstool.howlingabysstoolapi.service.AssetService;
-import howlingabysstool.howlingabysstoolapi.service.AssetServiceImpl;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

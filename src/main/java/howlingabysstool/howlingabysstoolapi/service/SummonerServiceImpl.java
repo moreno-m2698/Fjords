@@ -15,9 +15,11 @@ public class SummonerServiceImpl implements SummonerService{
 
     private final String apiUrl = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/";
     private final RestTemplate restTemplate;
+    private final RiotAccountService riotAccountService;
 
-    public SummonerServiceImpl(RestTemplate restTemplate) {
+    public SummonerServiceImpl(RestTemplate restTemplate, RiotAccountService riotAccountService) {
         this.restTemplate = restTemplate;
+        this.riotAccountService = riotAccountService;
     }
     @Override
     public Summoner getSummonerByName(String name) {
@@ -30,6 +32,13 @@ public class SummonerServiceImpl implements SummonerService{
     @Override
     public Summoner getSummonerByPuuid(String puuid) {
         String fullApiUrl = apiUrl + "by-puuid/" + puuid + "?api_key="+ myConfig.getRiotApi();
+        return restTemplate.getForObject(fullApiUrl, Summoner.class);
+    }
+
+    @Override
+    public Summoner getSummonerByRiotId(String gameName, String tagLine) {
+        String accountPuuid = riotAccountService.getRiotAccountPuuidByRiotId(gameName, tagLine);
+        String fullApiUrl = apiUrl + "by-puuid/" + accountPuuid + "?api_key="+ myConfig.getRiotApi();
         return restTemplate.getForObject(fullApiUrl, Summoner.class);
     }
 }

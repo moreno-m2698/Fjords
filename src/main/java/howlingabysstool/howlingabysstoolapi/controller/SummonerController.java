@@ -29,5 +29,10 @@ public class SummonerController {
         return summonerService.getSummonerByName(summonerName).getSummonerLevel();
     }
 
+    @GetMapping("/by-riot-id/{gameName}/{tagLine}")
+    public Summoner getSummonerByRiotId(@PathVariable String gameName, @PathVariable String tagLine) {
+        return summonerService.getSummonerByRiotId(gameName, tagLine);
+    }
+
 
 }
