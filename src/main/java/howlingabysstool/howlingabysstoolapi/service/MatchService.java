@@ -1,6 +1,6 @@
 package howlingabysstool.howlingabysstoolapi.service;
 
-import howlingabysstool.howlingabysstoolapi.domain.Match;
+import howlingabysstool.howlingabysstoolapi.domain.Match.Match;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package howlingabysstool.howlingabysstoolapi.domain;
+package howlingabysstool.howlingabysstoolapi.domain.Match;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,7 +7,6 @@ import lombok.ToString;
 
 import java.util.List;
 
-@Getter
 @Setter
 @NoArgsConstructor
 @ToString

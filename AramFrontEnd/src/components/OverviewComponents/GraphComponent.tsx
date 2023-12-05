@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { Timeline } from '../../types'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
 
 
 interface GraphComponentProps {
-    timeline: Timeline
+    timeline: Timeline //Need to add null eventually
     puuid: string
 }
 
@@ -12,6 +13,8 @@ function GraphComponent(props: GraphComponentProps) {
     const [focusIndex, setFocusIndex]= useState<number|null>(null);
     const [damageArrays, setDamageArrays]=useState<number[][]>([]);
 
+    //Need to do some kind of null check for when component exists before timeline query
+    //Probably solved by using lazy loading
 
   const findMainParticipantIndex = () => {
     const partipants = props.timeline.participants;
@@ -33,6 +36,14 @@ function GraphComponent(props: GraphComponentProps) {
   }
 
   //TODO: turn all of these into mapping functions and maybe try a more generic approach
+
+  const findTimestamps = () => {
+    const frames = props.timeline.frames;
+    const timestamps = frames.map( frame => {
+        return frame.timestamp;
+    })
+    return timestamps;
+  }
 
   const findDamageDoneStats = (index: number) => {
     const frames = props.timeline.frames;
@@ -65,9 +76,19 @@ function GraphComponent(props: GraphComponentProps) {
   }
   
 
+  //data = [[{name/timestamp: ,damagedone: , damagetaken: , gold: }, ... ], ... ]
+
     return (
-    <div>GraphComponent</div>
-  )
+        <>
+            <div>GraphComponent</div>
+            <LineChart width={600} height={600} >
+                <Line type="monotone" dataKey="damagedDone" stroke="#8884d8" />
+                <CartesianGrid stroke = "#ccc" />
+                <XAxis dataKey="timestamp" />
+                <YAxis />
+            </LineChart>
+        </>
+    )
 
 }
 

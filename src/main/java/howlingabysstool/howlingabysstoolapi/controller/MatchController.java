@@ -1,7 +1,7 @@
 package howlingabysstool.howlingabysstoolapi.controller;
 
 
-import howlingabysstool.howlingabysstoolapi.domain.Match;
+import howlingabysstool.howlingabysstoolapi.domain.Match.Match;
 import howlingabysstool.howlingabysstoolapi.service.MatchService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
