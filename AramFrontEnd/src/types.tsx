@@ -47,7 +47,7 @@ export interface Timeline {
 }
 
 interface timelineFrame {
-    participantFrames: Map<string, timelineParticipantFrame>,
+    participantFrames: Map<String, timelineParticipantFrame>,
     timestamp: number
 }
 

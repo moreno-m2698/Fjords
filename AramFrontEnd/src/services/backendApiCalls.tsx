@@ -24,6 +24,16 @@ export async function getSummonerByName( summonerName: string) {
     }
 }
 
+export async function getSummonerByRiotId( gameName: string, tagLine: string) {
+    const endpoint = "/api/summoner/by-riot-id/" + gameName + "/" + tagLine;
+    try {
+        const response: AxiosResponse<Summoner, any> = await axios.get(endpoint, { responseEncoding: "json" });
+        return response.data;
+    } catch (error) {
+        console.log("Error grabbing summoner data: " + error);
+    }
+}
+
 // export async function getSummonerDataByPuuid( puuid: string ) {
 //     try {
 //         const endpoint = "/api/summoner/by-puuid/" + puuid;

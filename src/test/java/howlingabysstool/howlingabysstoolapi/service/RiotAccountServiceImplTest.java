@@ -1,27 +1,25 @@
 package howlingabysstool.howlingabysstoolapi.service;
 
-import howlingabysstool.howlingabysstoolapi.domain.RiotAccount;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RiotAccountServiceImplTest {
 
-    @Autowired
-    private RiotAccountService underTest;
-    @Test
-    void itShouldGetRiotAccountByRiotId() {
-        //This test should grab my account and return a RiotAccount object: can't specify return values due to making
-        //direct calls to the riot API
+    private RiotAccountService riotAccountService;
+    //I keep getting null pointer exceptions!
 
-        //given
+    @Test
+    void testGetRiotAccountPuuidByRiotId() {
+        // Given
         String gameName = "keoP";
         String tagLine = "lfhp";
-        //when
-        RiotAccount account = underTest.getRiotAccountByRiotId(gameName, tagLine);
-        //then
-        assertNotNull(account);
 
+        // When
+        String actualPuuid = riotAccountService.getRiotAccountPuuidByRiotId(gameName, tagLine);
+
+        // Then
+        assertNotNull(actualPuuid);
+        // You may want to add more assertions based on your specific requirements
     }
 }

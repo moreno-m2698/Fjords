@@ -2,7 +2,6 @@ package howlingabysstool.howlingabysstoolapi.service;
 
 import howlingabysstool.howlingabysstoolapi.configuration.YamlConfig;
 import howlingabysstool.howlingabysstoolapi.domain.RiotAccount;
-import howlingabysstool.howlingabysstoolapi.domain.Summoner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -16,6 +15,7 @@ public class RiotAccountServiceImpl implements RiotAccountService{
     public RiotAccountServiceImpl(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
+
 
     @Override
     public RiotAccount getRiotAccountByPuuid(String puuid) {
