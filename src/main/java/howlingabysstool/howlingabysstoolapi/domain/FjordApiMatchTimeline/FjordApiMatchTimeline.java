@@ -12,6 +12,5 @@ import java.util.Map;
 @ToString
 @NoArgsConstructor
 public class FjordApiMatchTimeline {
-
-    private Map<String, Participant> participants; //puuid is key
+    private Map<String, FjordParticipant> participants; //puuid is key
 }

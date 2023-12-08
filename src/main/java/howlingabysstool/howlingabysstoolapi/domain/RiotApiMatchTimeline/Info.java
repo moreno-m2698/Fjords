@@ -12,6 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 public class Info {
-    private List<Frame> frames;
+    private List<RiotFrame> frames;
     private List<RiotParticipant> participants;
 }

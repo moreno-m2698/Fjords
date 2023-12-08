@@ -11,7 +11,7 @@ import java.util.Map;
 @Setter
 @NoArgsConstructor
 @ToString
-public class Frame {
+public class RiotFrame {
     private Map<String, ParticipantFrame> participantFrames;
     private int timestamp;
 }

@@ -9,7 +9,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class Frame {
+public class FjordFrame {
     private int timestamp;
     private int damageDone;
     private int damageTaken;
