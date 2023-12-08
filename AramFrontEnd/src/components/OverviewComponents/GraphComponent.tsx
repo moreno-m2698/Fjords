@@ -76,7 +76,7 @@ function GraphComponent(props: GraphComponentProps) {
   }
   
 
-  //data = [[{name/timestamp: ,damagedone: , damagetaken: , gold: }, ... ], ... ]
+  //data = {puuid: [{name/timestamp: ,damagedone: , damagetaken: , gold: }, ... ], ... }
 
     return (
         <>
