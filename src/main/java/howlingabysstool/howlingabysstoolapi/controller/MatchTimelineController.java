@@ -31,5 +31,4 @@ public class MatchTimelineController {
         return new ResponseEntity<>(fjordTimeline, HttpStatus.OK);
     }
 
-
 }

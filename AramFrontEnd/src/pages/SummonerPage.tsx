@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { useQuery } from "@tanstack/react-query"
-import { getSummonerByName, getMatchIdsByPuuid } from '../services/backendApiCalls';
+import { getMatchIdsByPuuid, getSummonerByRiotId } from '../services/backendApiCalls';
 import SummonerCard from '../components/OverviewComponents/SummonerCard';
 import MatchCard from '../components/OverviewComponents/MatchCard';
 
@@ -20,7 +20,7 @@ function SummonerPage() {
     data: summoner
   } = useQuery({
     queryKey: ["summoner", summonerName],
-    queryFn: () => getSummonerByName(summonerName!)
+    queryFn: () => getSummonerByRiotId(summonerName!, "lfhp")
   }) 
 
   const { 

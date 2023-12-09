@@ -2,30 +2,10 @@ import axios from "axios";
 import { AxiosResponse } from "axios";
 import { Summoner, Match, Timeline } from "../types";
 //Have redirects for all functions that map me to users if they do not exist
-// export async function getRiotAccountByRiotId( gameName: string, tagLine: string ){
-//     try {
-//         const endpoint = "/api/account/by-riot-id/" + gameName + "/" + tagLine;
-//         const response = await axios.get(endpoint, { responseType: "json" });
-//         return response;
-//     } catch (error) {
 
-//         console.log(error);
-//     }
-
-// }
-
-export async function getSummonerByName( summonerName: string) {
-    const endpoint = "/api/summoner/by-name/" + summonerName;
-    try {
-        const response: AxiosResponse<Summoner, any> = await axios.get(endpoint, {responseEncoding: "json"});
-        return response.data;
-    } catch (error) {
-        console.log("Error grabbing summoner data:" + error)
-    }
-}
 
 export async function getSummonerByRiotId( gameName: string, tagLine: string) {
-    const endpoint = "/api/summoner/by-riot-id/" + gameName + "/" + tagLine;
+    const endpoint = "/api/account/by-riot-id/" + gameName + "/" + tagLine;
     try {
         const response: AxiosResponse<Summoner, any> = await axios.get(endpoint, { responseEncoding: "json" });
         return response.data;
@@ -34,15 +14,6 @@ export async function getSummonerByRiotId( gameName: string, tagLine: string) {
     }
 }
 
-// export async function getSummonerDataByPuuid( puuid: string ) {
-//     try {
-//         const endpoint = "/api/summoner/by-puuid/" + puuid;
-//         const response = await axios.get(endpoint, {responseType: "json"});
-//         return response
-//     } catch (error) {
-//         return error;
-//     }
-// }
 
 export async function getMatchIdsByPuuid( puuid: string, amount: number ) {
     try {

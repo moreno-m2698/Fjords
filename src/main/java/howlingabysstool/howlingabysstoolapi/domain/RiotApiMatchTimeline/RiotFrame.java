@@ -17,7 +17,6 @@ public class RiotFrame {
     private Map<String, ParticipantFrame> participantFrames;
     private int timestamp;
 
-
     public FjordFrame getFjordFrame(String participantId) {
         ParticipantFrame participantFrame = this.participantFrames.get(participantId);
         int timestamp = this.getTimestamp();
