@@ -5,7 +5,7 @@ import { Summoner, Match, Timeline } from "../types";
 
 
 export async function getSummonerByRiotId( gameName: string, tagLine: string) {
-    const endpoint = "/api/account/by-riot-id/" + gameName + "/" + tagLine;
+    const endpoint = "/api/summoner/by-riot-id/" + gameName + "/" + tagLine;
     try {
         const response: AxiosResponse<Summoner, any> = await axios.get(endpoint, { responseEncoding: "json" });
         return response.data;
