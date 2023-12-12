@@ -3,6 +3,8 @@ package howlingabysstool.howlingabysstoolapi.controller;
 
 import howlingabysstool.howlingabysstoolapi.domain.Match.Match;
 import howlingabysstool.howlingabysstoolapi.service.MatchService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +27,8 @@ public class MatchController {
     }
 
     @GetMapping("/request/{amount}/{puuid}")
-    public List<String> getMatchIds(@PathVariable int amount, @PathVariable String puuid) {
-        return matchService.getAramMatchIdsByPuuid(puuid, amount);
+    public ResponseEntity<List<String>> getMatchIds(@PathVariable int amount, @PathVariable String puuid) {
+        List<String> matches = matchService.getAramMatchIdsByPuuid(puuid, amount);
+        return new ResponseEntity<>(matches, HttpStatus.OK);
     }
 }

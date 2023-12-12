@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export async function getChampionAsset( championName: string ) {
     try {
         const endpoint =  "/api/asset/champion/" + championName;
@@ -8,17 +6,6 @@ export async function getChampionAsset( championName: string ) {
         console.log("There was an error grabbing asset for: " + championName + " : " + error);
         
     }
-}
-
-export const getItemAssetPromise = async ( itemId: number ) => {
-    const endpoint = "/api/asset/item/" + itemId;
-    return axios.get(endpoint, { responseType: "blob" }
-    ).then( (response) => {
-
-        return endpoint
-    }).catch( (error) => {
-        console.log("There was an error grabbing asset for: " + itemId + " : " + error);
-    });
 }
 
 export async function getItemAssetFromItemId( itemId: number ){
