@@ -1,6 +1,6 @@
 import { getMatchByMatchId, getMatchTimelineByMatchId } from '../../services/backendApiCalls';
 import { useQuery } from "@tanstack/react-query"
-import { getChampionAsset } from '../../services/assetApiCalls';
+import { getAsset } from '../../services/assetApiCalls';
 import InventoryComponent from './InventoryComponent';
 import { Accordion, AccordionSummary, AccordionDetails, Typography } from "@mui/material"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
@@ -31,7 +31,7 @@ function MatchCard(props: MatchCardProps) {
     } = useQuery({
         enabled: playerIndex !== undefined && puuidList !== undefined && match?.info.participants[playerIndex].championName !== undefined,
         queryKey: ["championAsset", match?.info.participants[playerIndex!].championName],
-        queryFn: () => getChampionAsset(match!.info.participants[playerIndex!].championName)
+        queryFn: () => getAsset(match!.info.participants[playerIndex!].championName, "champion")
     })
 
     const {

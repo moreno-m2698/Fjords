@@ -41,6 +41,13 @@ interface Challenges {
     snowballsHit: number
 }
 
+export interface FjordFrame {
+    timestamp: number,
+    damageDone: number,
+    damageTaken: number,
+    gold: number
+}
+
 export interface Timeline {
     frames: timelineFrame[],
     participants: timelineParticipant[]

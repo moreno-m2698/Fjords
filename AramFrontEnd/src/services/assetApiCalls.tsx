@@ -1,3 +1,13 @@
+
+
+export async function getAsset( identifier: string, folder: string) {
+    try {
+        return "/api/asset/" + folder + "/" + identifier;
+    } catch (error) {
+        console.log("There was an error grabbing this asset: " + folder + ": " + identifier)
+    }
+}
+
 export async function getChampionAsset( championName: string ) {
     try {
         const endpoint =  "/api/asset/champion/" + championName;
@@ -21,14 +31,9 @@ export async function getItemAssetFromItemId( itemId: number ){
 export async function getProfileIconAsset( profileId: number ) {
     try {
         const endpoint = "/api/asset/profileicon/" + profileId;
-        // const response = await axios.get(endpoint, { responseType: "blob" });
-        // const imageBlob = new Blob([response.data], { type: "image/png" });
-        // const imageUrl = URL.createObjectURL(imageBlob);
+
          return endpoint;
     } catch (error) {
         console.log(error);
-        return "";
     }
 }
-
-

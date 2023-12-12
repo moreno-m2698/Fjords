@@ -1,6 +1,6 @@
 
 import { useQueries } from '@tanstack/react-query'
-import { getItemAssetFromItemId } from '../../services/assetApiCalls'
+import { getAsset } from '../../services/assetApiCalls'
 interface InventoryComponentProps {
   inventory: number[]
 }
@@ -12,7 +12,7 @@ function InventoryComponent(props:InventoryComponentProps) {
     queries: props.inventory.map((itemId) => {
       return {
         queryKey: ["itemAsset", itemId!],
-        queryFn: () => getItemAssetFromItemId(itemId)
+        queryFn: () => getAsset(itemId.toString(), "item")
       }
     })
   })

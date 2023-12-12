@@ -1,5 +1,5 @@
 import { Summoner } from "../../types";
-import { getProfileIconAsset } from "../../services/assetApiCalls";
+import { getProfileIconAsset, getAsset } from "../../services/assetApiCalls";
 import { useQuery } from "@tanstack/react-query";
 
 
@@ -15,7 +15,7 @@ function SummonerCard(props: summonerCardProps) {
     data: profileAsset
   } = useQuery({
     queryKey: ["profileAsset", props.summoner.profileIconId],
-    queryFn: () => getProfileIconAsset(props.summoner.profileIconId)
+    queryFn: () => getAsset(props.summoner.profileIconId.toString(), "profileicon")
   })
 
   if (statusProfileAsset==="pending") return <h1>Loading Profile...</h1>

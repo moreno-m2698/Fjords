@@ -30,6 +30,11 @@ function HomePage() {
         value={summonerName}
         onChange={onSummonerInputChange}
       />
+      <TextField
+        id="tagline-input"
+        label="Tag Line"
+        type="search"
+      />
       <Button
         variant="contained"
         onClick={onButtonClick}
