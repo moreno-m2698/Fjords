@@ -8,6 +8,7 @@ import lombok.ToString;
 import java.util.List;
 
 @Setter
+@Getter
 @NoArgsConstructor
 @ToString
 public class Match {

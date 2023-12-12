@@ -22,8 +22,9 @@ public class MatchController {
     }
 
     @GetMapping("/{matchId}")
-    public Match getData(@PathVariable String matchId) {
-        return matchService.getMatchByMatchId(matchId);
+    public ResponseEntity<Match> getMatchData(@PathVariable String matchId) {
+        Match match = matchService.getMatchByMatchId(matchId);
+        return new ResponseEntity<>(match, HttpStatus.OK);
     }
 
     @GetMapping("/request/{amount}/{puuid}")
