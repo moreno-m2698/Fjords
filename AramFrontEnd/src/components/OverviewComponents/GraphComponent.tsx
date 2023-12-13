@@ -1,92 +1,42 @@
 import { useState } from 'react'
-import { Timeline } from '../../types'
+import { FjordFrame } from '../../types'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
+import { useQuery } from "@tanstack/react-query";
+import { getMatchTimelineByMatchId } from '../../services/backendApiCalls';
+import { time } from 'console';
 
 
 interface GraphComponentProps {
-    timeline: Timeline //Need to add null eventually
+
+    matchId: string
     puuid: string
 }
 
 function GraphComponent(props: GraphComponentProps) {
-  
-    const [focusIndex, setFocusIndex]= useState<number|null>(null);
-    const [damageArrays, setDamageArrays]=useState<number[][]>([]);
 
-    //Need to do some kind of null check for when component exists before timeline query
-    //Probably solved by using lazy loading
-
-  const findMainParticipantIndex = () => {
-    const partipants = props.timeline.participants;
-    let i = 0;
-    let mainPlayerIndex = null;
-    while ( i < partipants.length || mainPlayerIndex == null) {
-        if ( partipants[i].puuid == props.puuid) {
-            mainPlayerIndex = partipants[i].participantId;
-        }
-        i++;
-    }
-
-    if (mainPlayerIndex == null) {
-        console.log("Could not identify player in timeline")
-    } else {
-        setFocusIndex(mainPlayerIndex);
-    }
-
-  }
-
-  //TODO: turn all of these into mapping functions and maybe try a more generic approach
-
-  const findTimestamps = () => {
-    const frames = props.timeline.frames;
-    const timestamps = frames.map( frame => {
-        return frame.timestamp;
+    const {
+        status: statusTimeline,
+        error: errorTimeline,
+        data: timeline
+    } = useQuery({
+        queryKey: ["timeline", props.matchId],
+        queryFn: () => getMatchTimelineByMatchId(props.matchId)
     })
-    return timestamps;
-  }
 
-  const findDamageDoneStats = (index: number) => {
-    const frames = props.timeline.frames;
-    const damageDoneOverTime = frames.map((frame)=>{
-        const particpantFrame = frame.participantFrames.get(index.toString());
-        const damage = particpantFrame?.damageStats.totalDamageDoneToChampions;
-        return damage;
-    })
-    return damageDoneOverTime;
-  }
+    
+    if (statusTimeline ==="pending" || statusTimeline==="error" || timeline === undefined) return <h1>Trying timeline</h1>
+    
 
-  const findDamageTakenStats = (index: number) => {
-    const frames = props.timeline.frames;
-    const damageTakenOverTime = frames.map((frame)=>{
-        const particpantFrame = frame.participantFrames.get(index.toString());
-        const damage = particpantFrame?.damageStats.totalDamageTaken;
-        return damage;
-    })
-    return damageTakenOverTime;
-  }
+    console.log("Within Graph Component");
+    console.log("Timeline call" + timeline); //object Object
+    console.log(timeline[props.puuid]);
+    
 
-  const findGoldStats = (index: number) => {
-    const frames = props.timeline.frames;
-    const goldOverTime = frames.map((frame)=>{
-        const particpantFrame = frame.participantFrames.get(index.toString());
-        const gold = particpantFrame?.totalGold;
-        return gold;
-    })
-    return goldOverTime;
-  }
-  
 
-  //data = participant{puuid: [{name/timestamp: ,damagedone: , damagetaken: , gold: }, ... ], ... }
 
     return (
         <>
             <div>GraphComponent</div>
-            <LineChart width={600} height={600} >
-                <Line type="monotone" dataKey="damagedDone" stroke="#8884d8" />
-                <CartesianGrid stroke = "#ccc" />
-                <XAxis dataKey="timestamp" />
-                <YAxis />
-            </LineChart>
         </>
     )
 

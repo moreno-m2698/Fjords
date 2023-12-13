@@ -48,26 +48,6 @@ export interface FjordFrame {
     gold: number
 }
 
-export interface Timeline {
-    frames: timelineFrame[],
-    participants: timelineParticipant[]
-}
-
-interface timelineFrame {
-    participantFrames: Map<String, timelineParticipantFrame>,
-    timestamp: number
-}
-
-interface timelineParticipantFrame {
-    damageStats: timelineDamageStats,
-    totalGold: number
-}
-
-interface timelineDamageStats {
-    totalDamageDoneToChampions: number,
-    totalDamageTaken: number
-}
-interface timelineParticipant {
-    participantId: number,
-    puuid: string
+export type FjordTimeline = {
+    [key: string]: FjordFrame[];
 }

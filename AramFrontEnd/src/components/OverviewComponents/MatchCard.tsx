@@ -4,6 +4,8 @@ import { getAsset } from '../../services/assetApiCalls';
 import InventoryComponent from './InventoryComponent';
 import { Accordion, AccordionSummary, AccordionDetails, Typography } from "@mui/material"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
+import GraphComponent from './GraphComponent';
+
 
 interface MatchCardProps {
     puuid: string,
@@ -34,19 +36,11 @@ function MatchCard(props: MatchCardProps) {
         queryFn: () => getAsset(match!.info.participants[playerIndex!].championName, "champion")
     })
 
-    const {
-        status: statusTimeline,
-        error: errorTimeline,
-        data: timeline
-    } = useQuery({
-        queryKey: ["timeline", props.matchId],
-        queryFn: () => getMatchTimelineByMatchId(props.matchId)
-    })
+    
 
     if (statusMatch==="pending" || playerIndex === undefined || puuidList === undefined) return <h1>Loading Match... {props.matchId}</h1>
     if (statusMatch==="error") return <h1>{JSON.stringify(errorMatch)}</h1>
-    if (statusTimeline ==="pending" || statusTimeline==="error") return <h1>Trying timeline</h1>
-    console.log(timeline)
+    
 
     const items = [
         match?.info.participants[playerIndex].item0!,
@@ -58,6 +52,7 @@ function MatchCard(props: MatchCardProps) {
         match?.info.participants[playerIndex].item6!,
     ].filter((itemId) => itemId !== 0);
     console.log(items);
+
 
   return (
     <div>
@@ -76,6 +71,7 @@ function MatchCard(props: MatchCardProps) {
                 </AccordionSummary>
                 <AccordionDetails>
                     <InventoryComponent inventory={items} />
+                    <GraphComponent puuid={props.puuid} matchId={props.matchId} />
                 </AccordionDetails>
             </Accordion>
     </div>

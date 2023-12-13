@@ -1,6 +1,6 @@
 import axios from "axios";
 import { AxiosResponse } from "axios";
-import { Summoner, Match, FjordFrame } from "../types";
+import { Summoner, Match, FjordFrame, FjordTimeline } from "../types";
 //Have redirects for all functions that map me to users if they do not exist
 
 
@@ -39,7 +39,7 @@ export async function getMatchByMatchId( matchId: string ) {
 export async function getMatchTimelineByMatchId( matchId: string ) {
     try {
         const endpoint = "/api/timeline/" + matchId;
-        const response: AxiosResponse<Map<String, FjordFrame[]>, any> = await axios.get(endpoint, { responseType: "json" });
+        const response: AxiosResponse<FjordTimeline, any> = await axios.get(endpoint, { responseType: "json" });
         return response.data;
     } catch ( error ) { 
         console.log("There was an error grabbing timeline for this match: " + matchId + " : " + error);
