@@ -21,11 +21,11 @@ function MatchContainer(props: MatchContainerProps) {
   })
   
   const matchArray = matchQueries.map(query => query.data);
-  
+  if (matchArray.includes(undefined)) return <h1>Loading Match Array</h1>
 
   return (
     <>
-      <SummaryCard matches={matchArray} />
+      <SummaryCard matches={matchArray} puuid={props.puuid}/>
       {props.matchIds.map((matchId: string) => (
         <MatchCard key={matchId} puuid={props.puuid} matchId={matchId} />
       ))}
