@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useQuery } from "@tanstack/react-query"
 import { getMatchIdsByPuuid, getSummonerByRiotId } from '../services/backendApiCalls';
 import SummonerCard from '../components/OverviewComponents/SummonerCard';
-import MatchCard from '../components/OverviewComponents/MatchCard';
+import MatchContainer from '../components/OverviewComponents/MatchContainer';
 
 //IMPORTANT: Somthing is happening where we are making the query calls twice
 
@@ -39,10 +39,7 @@ function SummonerPage() {
   return (
     <>
       <SummonerCard summoner={summoner!} />
-
-      { statusMatchIds === "success" ? matchIds!.map((matchId: string) => (
-        <MatchCard key={matchId} puuid={summoner!.puuid} matchId={matchId} />
-      )): null}
+      { statusMatchIds === "success" ? <MatchContainer matchIds={matchIds!} puuid={summoner!.puuid}/>: null}
     </>
   );
 }

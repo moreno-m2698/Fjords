@@ -15,34 +15,9 @@ import java.util.stream.Collectors;
 @Service
 public class FjordMatchTimelineServiceImpl implements FjordMatchTimelineService{
 
-    private final RestTemplate restTemplate;
-    public FjordMatchTimelineServiceImpl(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
+
+    public FjordMatchTimelineServiceImpl() {
     }
-//    private FjordApiMatchTimeline convertRiotTimelineToFjordTimeline(RiotApiMatchTimeline riotTimeline) {
-//
-//        List<RiotParticipant> riotParticipants = riotTimeline.getInfo().getParticipants();
-//        //{participants: {puuid: , participantId: }
-//
-//        List<RiotFrame> timelineFrames = riotTimeline.getInfo().getFrames();
-//        //[frames:{"1": {data}, "2: {data},...} timestamp:}]
-//
-//        FjordApiMatchTimeline result = new FjordApiMatchTimeline();
-//        Map<String, FjordParticipant> puuidFramesMap = new HashMap<>();
-//
-//        //puuid -> participantId -> participantFrame
-//
-//
-//        for (RiotParticipant riotParticipant : riotParticipants) {
-//            final String participantId = Integer.toString(riotParticipant.getParticipantId());
-//            FjordParticipant fjordParticipant = new FjordParticipant();
-//            List<FjordFrame> playerFrames = timelineFrames.stream().map((timelineFrame) -> timelineFrame.getFjordFrame(participantId)).collect(Collectors.toList());
-//            fjordParticipant.setFrames(playerFrames);
-//            puuidFramesMap.put(riotParticipant.getPuuid(), fjordParticipant);
-//        }
-//        result.setParticipants(puuidFramesMap);
-//        return result;
-//    }
 
     @Override
     public Map<String, List<FjordFrame>> convertRiotTimelineToFjordTimelineReduced(RiotApiMatchTimeline riotTimeline) {

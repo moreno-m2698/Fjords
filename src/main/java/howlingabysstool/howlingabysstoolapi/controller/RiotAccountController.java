@@ -19,10 +19,7 @@ public class RiotAccountController {
         this.riotAccountService = riotAccountService;
         this.summonerService = summonerService;
     }
-    @GetMapping("/by-puuid/{puuid}")
-    public RiotAccount getRiotAccountByPuuid(@PathVariable String puuid) {
-        return riotAccountService.getRiotAccountByPuuid(puuid);
-    }
+
     @GetMapping("/by-riot-id/{gameName}/{tagLine}")
     public Summoner getSummonerByRiotId(@PathVariable String gameName, @PathVariable String tagLine) {
         RiotAccount riotAccount = riotAccountService.getRiotAccountByRiotId(gameName, tagLine);

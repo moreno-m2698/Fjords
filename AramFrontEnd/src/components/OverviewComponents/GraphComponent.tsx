@@ -1,9 +1,7 @@
-import { useState } from 'react'
-import { FjordFrame } from '../../types'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
+
+import { LineChart, Line, XAxis, YAxis, CartesianGrid,Tooltip } from 'recharts';
 import { useQuery } from "@tanstack/react-query";
 import { getMatchTimelineByMatchId } from '../../services/backendApiCalls';
-import { time } from 'console';
 
 
 interface GraphComponentProps {
@@ -23,20 +21,32 @@ function GraphComponent(props: GraphComponentProps) {
         queryFn: () => getMatchTimelineByMatchId(props.matchId)
     })
 
-    
     if (statusTimeline ==="pending" || statusTimeline==="error" || timeline === undefined) return <h1>Trying timeline</h1>
-    
-
-    console.log("Within Graph Component");
-    console.log("Timeline call" + timeline); //object Object
-    console.log(timeline[props.puuid]);
-    
-
-
 
     return (
         <>
             <div>GraphComponent</div>
+            <LineChart width={600} height={300} data={timeline[props.puuid]}>
+                <Line type="monotone" dataKey="damageDone" stroke="#8884d8" />
+                <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                <XAxis dataKey="timestamp" />
+                <YAxis />
+                <Tooltip />
+            </LineChart>
+            <LineChart width={600} height={300} data={timeline[props.puuid]}>
+                <Line type="monotone" dataKey="damageTaken" stroke="#8884d8" />
+                <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                <XAxis dataKey="timestamp" />
+                <YAxis />
+                <Tooltip />
+            </LineChart>
+            <LineChart width={600} height={300} data={timeline[props.puuid]}>
+                <Line type="monotone" dataKey="gold" stroke="#8884d8" />
+                <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                <XAxis dataKey="timestamp" />
+                <YAxis />
+                <Tooltip />
+            </LineChart>
         </>
     )
 

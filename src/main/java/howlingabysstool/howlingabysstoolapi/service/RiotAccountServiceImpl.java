@@ -16,13 +16,6 @@ public class RiotAccountServiceImpl implements RiotAccountService{
         this.restTemplate = restTemplate;
     }
 
-
-    @Override
-    public RiotAccount getRiotAccountByPuuid(String puuid) {
-        String fullApiUrl = apiUrl + "by-puuid/"+ puuid + "?api_key=" + myConfig.getRiotApi();
-        System.out.println(fullApiUrl);
-        return restTemplate.getForObject(fullApiUrl, RiotAccount.class);
-    }
     @Override
     public RiotAccount getRiotAccountByRiotId(String gameName, String tagLine) {
         String fullApiUrl = apiUrl + "by-riot-id/" + gameName + '/' + tagLine + "?api_key=" + myConfig.getRiotApi();
@@ -33,7 +26,6 @@ public class RiotAccountServiceImpl implements RiotAccountService{
     public String getRiotAccountPuuidByRiotId(String gameName, String tagLine) {
         String riotUrl = apiUrl + "by-riot-id/" + gameName + "/" + tagLine + "?api_key=" + myConfig.getRiotApi();
         RiotAccount account  = restTemplate.getForObject(riotUrl, RiotAccount.class);
-        //think of how I want to do a null check
         return account.getPuuid();
     }
 }
