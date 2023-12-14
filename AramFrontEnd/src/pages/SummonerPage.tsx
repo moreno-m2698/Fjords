@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import { useQuery } from "@tanstack/react-query"
 import { getMatchIdsByPuuid, getSummonerByRiotId } from '../services/backendApiCalls';
 import SummonerCard from '../components/OverviewComponents/SummonerCard';
@@ -11,8 +11,9 @@ import MatchContainer from '../components/OverviewComponents/MatchContainer';
 
 function SummonerPage() {
   const { summonerName } = useParams();
-
-  const matchLength = 2;
+  const [searchParams, setSearchParams] = useSearchParams({ tagline: "" })
+  console.log(searchParams)
+  const matchLength = 5;
 
   const {
     status: statusSummoner,

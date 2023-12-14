@@ -6,8 +6,6 @@ interface SummaryCardProps{
 }
 
 function SummaryCard(props: SummaryCardProps) {
-  
-  
 
   const [winRate, setWinRate] = useState<number>(0);
 
@@ -22,7 +20,6 @@ function SummaryCard(props: SummaryCardProps) {
         wins +=1;
       }
       
-
     }
     setWinRate(wins/props.matches.length);
 
@@ -32,7 +29,10 @@ function SummaryCard(props: SummaryCardProps) {
   console.log("wr: " + winRate)
 
   return (
+    <>
     <div>SummaryCard</div>
+    <h2>Win Rate: {winRate}</h2>
+    </>
   )
 }
 
