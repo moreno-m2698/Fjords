@@ -1,5 +1,9 @@
 package howlingabysstool.howlingabysstoolapi.domain;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,8 +13,21 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
+@Entity(name = "RiotAccount")
+@Table(name = "riot_account")
 public class RiotAccount {
+
+    @Id
     private String puuid;
+
+    @Column(
+            name = "game_name",
+            nullable = false
+    )
     private String gameName;
+    @Column(
+            name = "tag_line",
+            nullable = false
+    )
     private String tagLine;
 }

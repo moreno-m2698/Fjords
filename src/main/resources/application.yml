@@ -1,10 +1,16 @@
 logging:
   level:
     org:
+      springframework:
+        jdbc: DEBUG
       hibernate:
         stat: debug
         type: trace
 spring:
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: default
   h2:
     console:
       enabled: true
@@ -12,20 +18,19 @@ spring:
   datasource:
     url: jdbc:h2:mem:testdb
     username: sa
-    password: password
-    driverClassName: org.h2.Driver
+    password:
+    driver-class-name: org.h2.Driver
   jpa:
-    repositories:
-      bootstrap-mode: default
-    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.H2Dialect
     properties:
       hibernate:
         format_sql: true
         generate_statistics: true
     show-sql: true
-  config:
-    activate:
-      on-profile: development
+#Find out how to access profiles since this is causing the other yaml properties to not work such as the h2 and its console.
+#  config:
+#    activate:
+#      on-profile: development
   resources:
     static-locations: classpath:/static/
 
