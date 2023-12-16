@@ -10,7 +10,7 @@ function Router() {
     <>
       <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/summoner">
+          <Route path="/account">
             <Route index element={<p>please give a name</p>} />
             <Route path=":summonerName" element={<SummonerPage />}  />
           </Route>

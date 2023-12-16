@@ -2,6 +2,7 @@ package howlingabysstool.howlingabysstoolapi.service;
 
 import howlingabysstool.howlingabysstoolapi.configuration.YamlConfig;
 import howlingabysstool.howlingabysstoolapi.domain.RiotAccount;
+import howlingabysstool.howlingabysstoolapi.repository.RiotAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -12,8 +13,10 @@ public class RiotAccountServiceImpl implements RiotAccountService{
     private YamlConfig myConfig;
     private final String apiUrl = "https://americas.api.riotgames.com/riot/account/v1/accounts/";
     private final RestTemplate restTemplate;
-    public RiotAccountServiceImpl(RestTemplate restTemplate) {
+    private final RiotAccountRepository riotAccountRepository;
+    public RiotAccountServiceImpl(RestTemplate restTemplate, RiotAccountRepository riotAccountRepository) {
         this.restTemplate = restTemplate;
+        this.riotAccountRepository = riotAccountRepository;
     }
 
     @Override
