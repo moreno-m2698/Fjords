@@ -1,4 +1,4 @@
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useOutletContext, useParams } from 'react-router-dom'
 import { useQuery } from "@tanstack/react-query"
 import { getMatchIdsByPuuid, getSummonerByRiotId } from '../services/backendApiCalls';
 import SummonerCard from '../components/OverviewComponents/SummonerCard';
@@ -8,11 +8,15 @@ import MatchContainer from '../components/OverviewComponents/MatchContainer';
 
 //React query still causes us to download imgs to client on each call, maybe we should try hosting assets in a repo instead.
 
+interface AccountParams {
+  gameName: string,
+  tagline: string
+}
+
 
 function SummonerPage() {
-  const { summonerName } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams({ tagline: "" })
-  console.log(searchParams)
+  const params = useParams();
+  console.log("Inside the SummonerPage tagline: " + params.tagLine);
   const matchLength = 5;
 
   const {
@@ -20,9 +24,9 @@ function SummonerPage() {
     error: errorSummoner,
     data: summoner
   } = useQuery({
-    queryKey: ["summoner", summonerName],
-    queryFn: () => getSummonerByRiotId(summonerName!, "lfhp")
-  }) 
+    queryKey: ["account", params.gameName, params.tagLine],
+    queryFn: () => getSummonerByRiotId(params.gameName!, params.tagLine!)
+  }); 
 
   const { 
     status: statusMatchIds,
@@ -31,7 +35,7 @@ function SummonerPage() {
     enabled: summoner?.puuid != null,
     queryKey: ["matchIds", summoner?.puuid],
     queryFn: () => getMatchIdsByPuuid(summoner!.puuid, matchLength)
-  })
+  });
 
   if (statusSummoner === "pending") return <h1>Loading Summoner...</h1>
   if (statusSummoner=== "error") return <h1>{JSON.stringify(errorSummoner)}</h1>
