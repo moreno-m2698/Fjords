@@ -13,7 +13,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-@Entity(name = "RiotAccount")
+@Entity(name = "riot_account")
 @Table(name = "riot_account")
 public class RiotAccount {
 
@@ -30,4 +30,10 @@ public class RiotAccount {
             nullable = false
     )
     private String tagLine;
+
+    public RiotAccount (String puuid, String gameName, String tagLine) {
+        this.puuid = puuid;
+        this.gameName = gameName;
+        this.tagLine = tagLine;
+    }
 }
