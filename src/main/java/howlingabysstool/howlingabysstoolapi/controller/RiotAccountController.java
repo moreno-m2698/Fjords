@@ -4,6 +4,8 @@ import howlingabysstool.howlingabysstoolapi.domain.RiotAccount;
 import howlingabysstool.howlingabysstoolapi.domain.Summoner;
 import howlingabysstool.howlingabysstoolapi.service.RiotAccountService;
 import howlingabysstool.howlingabysstoolapi.service.SummonerService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +23,17 @@ public class RiotAccountController {
     }
 
     @GetMapping("/by-riot-id/{gameName}/{tagLine}")
-    public Summoner getSummonerByRiotId(@PathVariable String gameName, @PathVariable String tagLine) {
+    public ResponseEntity<RiotAccount> getRiotAccountByRiotId(@PathVariable String gameName, @PathVariable String tagLine) {
         RiotAccount riotAccount = riotAccountService.getRiotAccountByRiotId(gameName, tagLine);
-        Summoner summoner = summonerService.getSummonerByPuuid(riotAccount.getPuuid());
-        return summoner;
+        return new ResponseEntity<>(riotAccount, HttpStatus.OK);
     }
+
+    @GetMapping("/test")
+    public ResponseEntity<RiotAccount> test() {
+        RiotAccount test = riotAccountService.test();
+        return new ResponseEntity<>(test, HttpStatus.OK);
+
+    }
+
+
 }

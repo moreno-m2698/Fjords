@@ -10,12 +10,12 @@ import java.util.Optional;
 
 
 public interface RiotAccountRepository extends JpaRepository<RiotAccount, String> {
-    @Query("SELECT ra FROM riot_account ra WHERE ra.gameName = :gameName")
-    List<RiotAccount> findByRiotId(@Param("gameName") String gameName);
+    @Query("SELECT ra FROM riot_account ra WHERE ra.gameName = :gameName AND ra.tagLine = :tagLine")
+    Optional<RiotAccount> findByRiotId(@Param("gameName") String gameName, @Param("tagLine") String tagLine);
 
 
-//    @Query("SELECT COUNT(1) from riot_account ra WHERE r.game_name := game_name AND r.tag_line := tag_line")
-//    int RiotIdExists(
-//            @Param("game_name") String game_name,
-//            @Param("tag_line") String tagLine);
+    @Query("SELECT COUNT(*) FROM riot_account ra WHERE ra.gameName = :gameName AND ra.tagLine = :tagLine")
+    int RiotIdExists(
+            @Param("gameName") String gameName,
+            @Param("tagLine") String tagLine);
 }
