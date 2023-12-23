@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -30,6 +32,8 @@ public class RiotAccount {
             nullable = false
     )
     private String tagLine;
+
+    private LocalDate addDate; //(yyyy-mm-dd)
 
     public RiotAccount (String puuid, String gameName, String tagLine) {
         this.puuid = puuid;
