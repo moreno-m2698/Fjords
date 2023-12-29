@@ -25,9 +25,7 @@ public class SummonerController {
     }
     @GetMapping("/by-riot-id/{gameName}/{tagLine}")
     public ResponseEntity<Summoner> getSummonerByRiotId(@PathVariable String gameName, @PathVariable String tagLine) {
-        RiotAccount riotAccount = riotAccountService.getRiotAccountByRiotId(gameName, tagLine);
-        String summonerPuuid = riotAccount.getPuuid();
-        Summoner summoner = summonerService.getSummonerByPuuid(summonerPuuid);
+        Summoner summoner = summonerService.getSummonerByRiotId(gameName, tagLine);
         return new ResponseEntity<>(summoner, HttpStatus.OK);
     }
 }

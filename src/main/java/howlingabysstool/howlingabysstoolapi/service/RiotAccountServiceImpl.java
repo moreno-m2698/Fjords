@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -34,63 +35,26 @@ public class RiotAccountServiceImpl implements RiotAccountService{
     public String getRiotAccountPuuidByRiotId(String gameName, String tagLine) {
         String riotUrl = BASE_URL + "by-riot-id/" + gameName + "/" + tagLine + "?api_key=" + myConfig.getRiotApi();
         RiotAccount newAccount = restTemplate.getForObject(riotUrl, RiotAccount.class);
-
         return newAccount.getPuuid();
-
-
     }
 
     @Override //always line up this method in the interface aand controller
     public RiotAccount test() {
-        boolean notriotIdExistsInCache = 1 == riotAccountRepository.RiotIdExists("keoP", "lfhp");
-        System.out.println("This should be false: " + notriotIdExistsInCache);
-        RiotAccount myAccount = new RiotAccount();
-        myAccount.setGameName("keoP");
-        myAccount.setTagLine("lfhp");
-        myAccount.setPuuid("puuid");
-        riotAccountRepository.save(myAccount);
-        boolean riotIdExistsInCache = 1 == riotAccountRepository.RiotIdExists("keoP", "lfhp");
-        System.out.println("This should be true: " + riotIdExistsInCache);
-        Optional<RiotAccount> thing = riotAccountRepository.findByRiotId("keoP", "lfhp");
-        RiotAccount account = thing.get();
-        return account;
-    }
 
+        String gameName = "keoP", tagLine = "lfhp";
+        Optional<RiotAccount> accountOptional = riotAccountRepository.findByRiotId(gameName,tagLine);
 
-    private RiotAccount idk(String gameName, String tagLine) {
-        //Check to see if account is in cache.
-        boolean riotIdExistsInCache = 1 == riotAccountRepository.RiotIdExists(gameName, tagLine);
+        if (accountOptional.isEmpty()) {
 
-        //Grab account
-        Optional<RiotAccount> riotAccountOptional = riotAccountRepository.findByRiotId(gameName, tagLine);
-        RiotAccount riotAccount = ProcessRiotAccountOptional(riotAccountOptional, gameName, tagLine);
+            String riotUrl = BASE_URL + "by-riot-id/" + gameName + "/" + tagLine + "?api_key=" + myConfig.getRiotApi();
+            RiotAccount newAccount = restTemplate.getForObject(riotUrl, RiotAccount.class);
+            newAccount.setAddDate(LocalDate.now());
+            riotAccountRepository.save(newAccount);
 
-        //Place in Cache if it doesn't exist
-        if (!riotIdExistsInCache) {
-
-            cacheRiotAccount(riotAccount);
-
+            return newAccount;
         }
-        //Always cache
 
-        return riotAccount;
-    }
-    private void cacheRiotAccount(RiotAccount riotAccount) {
-        riotAccountRepository.save(riotAccount);
-    }
-
-    private RiotAccount ProcessRiotAccountOptional(
-            Optional<RiotAccount> accountOptional,
-            String gameName,
-            String tagLine) {
-        return accountOptional
-                .orElseGet(() -> {
-                    String riotUrl = BASE_URL + "by-riot-id/" + gameName + "/" + tagLine + "?api_key=" + myConfig.getRiotApi();
-                    RiotAccount newAccount = restTemplate.getForObject(riotUrl, RiotAccount.class);
-
-                    return newAccount;
-                });
-
+        return accountOptional.get();
     }
 
 }
