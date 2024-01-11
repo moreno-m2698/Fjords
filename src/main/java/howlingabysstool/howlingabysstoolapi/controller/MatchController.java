@@ -34,9 +34,10 @@ public class MatchController {
         return new ResponseEntity<>(matches, HttpStatus.OK);
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<MatchParticipant> getMatchParticipant(){
-        MatchParticipant participant = matchService.getMatchParticipantByAccountIdAndMatchId("O7UOyU08FLv6CqVjTpsCzpsCrLMAzkXPjhHwaGwEirNyB7nxhWXGJPHL2fqKJLZPOldv3JtHFSCxqw", "NA1_4880422007");
+    @GetMapping("/matchParticipant/{riotPuuid}/{matchId}")
+    public ResponseEntity<MatchParticipant> getMatchParticipant(@PathVariable String riotPuuid, @PathVariable String matchId){
+        //http://localhost:8080/api/match/matchParticipant/O7UOyU08FLv6CqVjTpsCzpsCrLMAzkXPjhHwaGwEirNyB7nxhWXGJPHL2fqKJLZPOldv3JtHFSCxqw/NA1_4880422007
+        MatchParticipant participant = matchService.getMatchParticipantByAccountIdAndMatchId(riotPuuid, matchId);
         return new ResponseEntity<>(participant, HttpStatus.OK);
     }
 

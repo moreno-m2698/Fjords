@@ -14,9 +14,7 @@ function SummaryCard(props: SummaryCardProps) {
     for (let i = 0; i < props.matches.length; i++) {
 
       const match = props.matches[i];
-      const puuidList = match?.metadata.participants;
-      const playerIndex = puuidList?.indexOf(props.puuid!);
-      if (props.matches[i]?.info.participants[playerIndex].win === true) {
+      if (props.matches[i]?.win === true) {
         wins +=1;
       }
       

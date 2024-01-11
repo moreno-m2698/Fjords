@@ -1,8 +1,10 @@
 import axios from "axios";
 import { AxiosResponse } from "axios";
-import { Summoner, Match, FjordFrame, FjordTimeline } from "../types";
+import { Summoner, FjordFrame, FjordTimeline, MatchParticipant } from "../types";
 //Have redirects for all functions that map me to users if they do not exist
 
+//TODO: add enumerations to the timeline and the match calls to help distinguish between the two in
+// network tab.
 
 export async function getSummonerByRiotId( gameName: string, tagLine: string) {
     const endpoint = "/api/summoner/by-riot-id/" + gameName + "/" + tagLine;
@@ -25,14 +27,13 @@ export async function getMatchIdsByPuuid( puuid: string, amount: number ) {
     }
 }
 
-
-export async function getMatchByMatchId( matchId: string ) {
-    const endpoint = "/api/match/" + matchId;
+export async function getMatchParticipant( puuid: string, matchId: string ) {
+    const endpoint = "/api/match/matchParticipant/" + puuid + "/" + matchId;
     try {
-        const response: AxiosResponse<Match,any> = await axios.get(endpoint, { responseType: "json" });
-        return response.data;
+    const response: AxiosResponse<MatchParticipant, any> = await axios.get(endpoint, { responseType: "json" });
+    return response.data;
     } catch (error) {
-        console.log("There was an error grabbing this match: " + matchId + " : " + error);
+        console.log("There was an error grabbing this match participant: " + puuid + "-" + matchId);
     }
 }
 

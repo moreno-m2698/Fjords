@@ -5,20 +5,9 @@ export interface Summoner {
     profileIconId: number,
     summonerLevel: number
 }
-export interface Match {
-    metadata: matchMetadata,
-    info: matchInfo
-}
-export interface matchMetadata {
-    participants: string[]
-}
-interface matchInfo {
-    participants: matchParticipant[],
-    queueId: number
-}
-export interface matchParticipant {
+export interface MatchParticipant {
+    matchIndex: number
     assists: number,
-    challenges: Challenges,
     championId: number,
     championName: string,
     deaths: number,
@@ -34,13 +23,8 @@ export interface matchParticipant {
     riotIdTagline: string,
     summonerName:string,
     win: boolean
-}
-interface Challenges {
-    kda: number,
-    poroExplosions: number,
-    snowballsHit: number
-}
 
+}
 export interface FjordFrame {
     timestamp: number,
     damageDone: number,
