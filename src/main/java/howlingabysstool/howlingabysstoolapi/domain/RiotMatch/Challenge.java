@@ -1,4 +1,4 @@
-package howlingabysstool.howlingabysstoolapi.domain.Match;
+package howlingabysstool.howlingabysstoolapi.domain.RiotMatch;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

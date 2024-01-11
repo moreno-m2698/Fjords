@@ -1,4 +1,4 @@
-package howlingabysstool.howlingabysstoolapi.domain.Match;
+package howlingabysstool.howlingabysstoolapi.domain.RiotMatch;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 public class Info {
-    private List<Participant> participants;
+    private List<RiotParticipant> participants;
     private int queueId;
 }

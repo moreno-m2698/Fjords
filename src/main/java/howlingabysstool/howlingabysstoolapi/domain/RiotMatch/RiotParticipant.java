@@ -1,4 +1,4 @@
-package howlingabysstool.howlingabysstoolapi.domain.Match;
+package howlingabysstool.howlingabysstoolapi.domain.RiotMatch;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +9,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class Participant {
+public class RiotParticipant {
     private int assists;
     private Challenge challenges;
     private int championId;

@@ -1,4 +1,4 @@
-package howlingabysstool.howlingabysstoolapi.domain.Match;
+package howlingabysstool.howlingabysstoolapi.domain.RiotMatch;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,11 +7,10 @@ import lombok.ToString;
 
 import java.util.List;
 
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @ToString
-public class Match {
-    private Metadata metadata;
-    private Info info;
+public class Metadata {
+    private List<String> participants;
 }
