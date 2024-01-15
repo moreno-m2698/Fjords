@@ -12,6 +12,8 @@ import lombok.ToString;
 public class Summoner {
     private String puuid;
     private String name;
+    private String tagline;
     private Integer profileIconId;
     private Integer summonerLevel;
+
 }

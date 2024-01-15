@@ -32,7 +32,9 @@ public class SummonerServiceImpl implements SummonerService{
     public Summoner getSummonerByRiotId(String gameName, String tagLine) {
         RiotAccount riotAccount = riotAccountService.getRiotAccountByRiotId(gameName, tagLine);
         String accountPuuid = riotAccount.getPuuid();
-        return getSummonerByPuuid(accountPuuid);
+        Summoner summoner = getSummonerByPuuid(accountPuuid);
+        summoner.setTagline(tagLine);
+        return summoner;
 
     }
 
