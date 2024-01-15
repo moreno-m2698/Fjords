@@ -13,17 +13,16 @@ function SummaryCard(props: SummaryCardProps) {
   const [averageDeaths, setAverageDeaths] = useState<number>(0);
   const [averageAssists, setAverageAssists] = useState<number>(0);
 
-  useEffect(() => {
-    let wins = 0;
-    for (let i = 0; i < props.matches.length; i++) {
 
-      const match = props.matches[i];
-      if (props.matches[i]?.win === true) {
-        wins +=1;
-      }
-      
-    }
-    setWinRate(wins/props.matches.length);
+  useEffect(() => {
+
+    const totalWins = props.matches.reduce((currentwins, match) => {
+      if (match.wins === true) {
+        return currentwins += 1
+      } 
+    }, 0)
+
+    setWinRate(totalWins/props.matches.length);
     const kdaSum = props.matches.reduce((totalKda, match) => {
       return {kills: totalKda.kills + match.kills, deaths: totalKda.deaths + match.deaths, assists: totalKda.assists + match.assists};
     }, {kills: 0, deaths: 0, assists: 0})
