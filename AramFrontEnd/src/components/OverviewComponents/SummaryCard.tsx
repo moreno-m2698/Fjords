@@ -16,10 +16,11 @@ function SummaryCard(props: SummaryCardProps) {
 
   useEffect(() => {
 
-    const totalWins = props.matches.reduce((currentwins, match) => {
-      if (match.wins === true) {
-        return currentwins += 1
-      } 
+    const totalWins = props.matches.reduce((currentWins, match) => {
+      if (match.win === true) {
+        return currentWins += 1;
+      }
+      return currentWins;
     }, 0)
 
     setWinRate(totalWins/props.matches.length);

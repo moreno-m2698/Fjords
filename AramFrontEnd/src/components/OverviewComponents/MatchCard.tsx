@@ -17,31 +17,14 @@ interface MatchCardProps {
 function MatchCard(props: MatchCardProps) {
 
     const {
-        status: statusMatch,
-        error: errorMatch,
-        data: matchParticipant 
-    } = useQuery({
-        queryKey: ["match", props.matchId],
-        queryFn: () => getMatchParticipant(props.puuid, props.matchId)
-
-    })
-
-
-    const {
         status: statusChampionAssetUrl,
         error: errorChampionAssetUrl,
         data: championAssetUrl
     } = useQuery({
-        enabled: matchParticipant?.championName !== undefined,
-        queryKey: ["championAsset", matchParticipant?.championName],
-        queryFn: () => getAsset(matchParticipant!.championName, "champion")
+        enabled: props.matchParticipant?.championName !== undefined,
+        queryKey: ["championAsset", props.matchParticipant?.championName],
+        queryFn: () => getAsset(props.matchParticipant!.championName, "champion")
     })
-
-    
-
-    if (statusMatch==="pending") return <h1>Loading Match... {props.matchId}</h1>
-    if (statusMatch==="error") return <h1>{JSON.stringify(errorMatch)}</h1>
-    
 
     const items = [
         props.matchParticipant?.item0!,
@@ -63,11 +46,11 @@ function MatchCard(props: MatchCardProps) {
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                     <Typography>
                         <h1>{props.matchId}</h1>
-                            <p>KDA: {matchParticipant?.kills}/{matchParticipant?.deaths}/{matchParticipant?.assists}</p>
+                            <p>KDA: {props.matchParticipant?.kills}/{props.matchParticipant?.deaths}/{props.matchParticipant?.assists}</p>
                             <h2>Champion:</h2>
-                            <p>Name: {matchParticipant?.championName}</p>
+                            <p>Name: {props.matchParticipant?.championName}</p>
                             <img alt="Champion Image" src={championAssetUrl}/>
-                            <p>Win: {matchParticipant?.win ? 'true' : 'false'}</p>
+                            <p>Win: {props.matchParticipant?.win ? 'true' : 'false'}</p>
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
