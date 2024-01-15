@@ -6,7 +6,8 @@ export interface Summoner {
     summonerLevel: number
 }
 export interface MatchParticipant {
-    matchIndex: number
+    matchId: string,
+    matchIndex: number,
     assists: number,
     championId: number,
     championName: string,
