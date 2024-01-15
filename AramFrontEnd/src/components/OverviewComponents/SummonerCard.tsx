@@ -22,12 +22,12 @@ function SummonerCard(props: summonerCardProps) {
   if (statusProfileAsset === "error") return <h1>Error: {JSON.stringify(errorProfileAsset)}</h1>
 
   return (
-    <div className="summmoner">
-      <h1>Summoner Card</h1>
-      <p>Name:{props.summoner?.name}</p>
-      <p>Lvl:{props.summoner?.summonerLevel}</p>
-      <img alt="Summoner Icon" src={profileAsset} />
-    </div>
+    <>
+      <h1>Name: {props.summoner?.name}</h1>
+      <h2>Tagline: #{props.summoner?.tagline}</h2>
+      <h3>Lvl:{props.summoner?.summonerLevel}</h3>
+      <img alt="Riot account icon" src={profileAsset} />
+    </>
   );
 }
 

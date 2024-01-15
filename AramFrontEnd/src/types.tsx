@@ -2,6 +2,7 @@
 export interface Summoner {
     puuid: string,
     name: string,
+    tagline: string,
     profileIconId: number,
     summonerLevel: number
 }

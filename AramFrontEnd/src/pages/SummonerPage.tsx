@@ -47,13 +47,22 @@ function SummonerPage() {
    
     <> 
       <header> 
-        <h1>These are headerr placeholders and do not work</h1>
+        <h1>Fjords</h1>
+        <h2>These are headerr placeholders and do not work</h2>
         <TextField />
         <TextField />
-        <Button />
+        <Button
+          variant="contained"
+        >
+          Find Summoner
+        </Button>
       </header>
-      <SummonerCard summoner={summoner!} />
-      { statusMatchIds === "success" ? <MatchDataContainer matchIds={matchIds!} puuid={summoner!.puuid}/>: null}
+      <section className = 'account__summary'>
+        <SummonerCard summoner={summoner!} />
+      </section>
+      <section className='account__matches'>
+        { statusMatchIds === "success" ? <MatchDataContainer matchIds={matchIds!} puuid={summoner!.puuid}/>: null}
+      </section>
     </>
   );
 }
