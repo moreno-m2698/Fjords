@@ -28,9 +28,9 @@ function SummaryCard(props: SummaryCardProps) {
       return {kills: totalKda.kills + match.kills, deaths: totalKda.deaths + match.deaths, assists: totalKda.assists + match.assists};
     }, {kills: 0, deaths: 0, assists: 0})
 
-    setAverageAssists(kdaSum.assists);
-    setAverageDeaths(kdaSum.deaths);
-    setAverageKills(kdaSum.kills);
+    setAverageAssists(kdaSum.assists/props.matches.length);
+    setAverageDeaths(kdaSum.deaths/props.matches.length);
+    setAverageKills(kdaSum.kills/props.matches.length);
 
   }, [])
 
@@ -42,7 +42,7 @@ function SummaryCard(props: SummaryCardProps) {
     <div>SummaryCard</div>
     <h2>Win Rate: {winRate}</h2>
     <h3>Sample Size: {props.matches.length}</h3>
-    <h3>Total KDA: {averageKills}/{averageDeaths}/{averageAssists}</h3>
+    <h3>Average KDA: {((averageKills + averageAssists) / averageDeaths).toFixed(2)}</h3>
     </>
   )
 }
