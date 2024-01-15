@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/react-query"
 import { getMatchIdsByPuuid, getSummonerByRiotId } from '../services/backendApiCalls';
 import SummonerCard from '../components/OverviewComponents/SummonerCard';
 import MatchDataContainer from '../components/OverviewComponents/MatchDataContainer';
+import { TextField, Button } from '@mui/material';
+
 
 //IMPORTANT: Somthing is happening where we are making the query calls twice
 
@@ -42,7 +44,14 @@ function SummonerPage() {
   //keep ths log here until we figure out the double render
   console.log(matchIds);
   return (
-    <>
+   
+    <> 
+      <header> 
+        <h1>These are headerr placeholders and do not work</h1>
+        <TextField />
+        <TextField />
+        <Button />
+      </header>
       <SummonerCard summoner={summoner!} />
       { statusMatchIds === "success" ? <MatchDataContainer matchIds={matchIds!} puuid={summoner!.puuid}/>: null}
     </>
