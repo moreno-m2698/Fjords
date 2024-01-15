@@ -25,11 +25,15 @@ function MatchDataContainer(props: MatchContainerProps) {
   if (matchDataArray.includes(undefined)) return <h1>Loading Match Array</h1>
 
   return (
-    <>
-      <SummaryCard matches={matchDataArray} puuid={props.puuid}/>
-      {matchDataArray.map((matchParticipant: MatchParticipant | undefined) => (
-        <MatchCard key={matchParticipant!.matchId} puuid={props.puuid} matchId={matchParticipant!.matchId} matchParticipant={matchParticipant!} />
-      ))}
+    <> 
+      <div>
+        <SummaryCard matches={matchDataArray} puuid={props.puuid}/>  
+      </div>
+      <ul>
+        {matchDataArray.map((matchParticipant: MatchParticipant | undefined) => (
+          <MatchCard key={matchParticipant!.matchId} puuid={props.puuid} matchId={matchParticipant!.matchId} matchParticipant={matchParticipant!} />
+        ))}
+      </ul>
     </>
   )
 }

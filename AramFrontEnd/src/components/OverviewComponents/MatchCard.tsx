@@ -39,26 +39,24 @@ function MatchCard(props: MatchCardProps) {
 
 
   return (
-    <div>
-
-            
-            <Accordion>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography>
-                        <h1>{props.matchId}</h1>
-                            <p>KDA: {props.matchParticipant?.kills}/{props.matchParticipant?.deaths}/{props.matchParticipant?.assists}</p>
-                            <h2>Champion:</h2>
-                            <p>Name: {props.matchParticipant?.championName}</p>
-                            <img alt="Champion Image" src={championAssetUrl}/>
-                            <p>Win: {props.matchParticipant?.win ? 'true' : 'false'}</p>
-                    </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <InventoryComponent inventory={items} />
-                    <GraphComponent puuid={props.puuid} matchId={props.matchId} />
-                </AccordionDetails>
-            </Accordion>
-    </div>
+    <li>
+        <Accordion>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography>
+                    <h1>{props.matchId}</h1>
+                        <p>KDA: {props.matchParticipant?.kills}/{props.matchParticipant?.deaths}/{props.matchParticipant?.assists}</p>
+                        <h2>Champion:</h2>
+                        <p>Name: {props.matchParticipant?.championName}</p>
+                        <img alt="Champion Image" src={championAssetUrl}/>
+                        <p>Win: {props.matchParticipant?.win ? 'true' : 'false'}</p>
+                </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+                <InventoryComponent inventory={items} />
+                <GraphComponent puuid={props.puuid} matchId={props.matchId} />
+            </AccordionDetails>
+        </Accordion>
+    </li>
   );
 }
 
