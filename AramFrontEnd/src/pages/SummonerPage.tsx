@@ -48,14 +48,29 @@ function SummonerPage() {
     <> 
       <header> 
         <h1>Fjords</h1>
-        <h2>These are headerr placeholders and do not work</h2>
-        <TextField />
-        <TextField />
-        <Button
-          variant="contained"
-        >
-          Find Summoner
-        </Button>
+        <search className='account-page-searchbar'>
+          <TextField 
+            id="account-name" 
+            label="Account Name" 
+            variant='standard'
+            className='account-pg-search-name'
+          />
+          <TextField 
+            id="tagline" 
+            label="#Tag" 
+            variant='standard' 
+            className='account-pg-search-tag'
+          />
+          <Button
+            variant="contained"
+            size='small'
+            disableRipple
+            disableElevation
+            className='account-pg-search-button'
+          >
+            Search
+          </Button>
+        </search>
       </header>
       <section className = 'account__summary'>
         <SummonerCard summoner={summoner!} />

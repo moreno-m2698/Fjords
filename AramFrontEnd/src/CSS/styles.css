@@ -1,0 +1,42 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    text-align: center;
+    width: max(300px, 100%)
+}
+
+/* header
+
+--- */
+
+header {
+    /* position: absolute; */
+    border: 2px solid red;
+    display: flex;
+    padding: 0 1em 0 1em;
+    gap: 1em;
+    align-items: center;
+    /* background-color: #131315; */
+}
+
+header h1 {
+    font-weight: 900;
+    font-size: 2rem;
+    margin: 0;
+}
+
+search {
+    display: flex;
+}
+
+
+section ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}

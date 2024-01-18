@@ -23,24 +23,26 @@ function HomePage() {
   return (
     <>
       <h1>Home Page</h1>
-      <TextField 
-        id="summoner-input" 
-        label="Summoner Name" 
-        type="search"
-        value={summonerName}
-        onChange={onSummonerInputChange}
-      />
-      <TextField
-        id="tagline-input"
-        label="Tag Line"
-        type="search"
-      />
-      <Button
-        variant="contained"
-        onClick={onButtonClick}
-      >
-        Find Summoner
-      </Button>
+      <search>
+        <TextField 
+          id="summoner-input" 
+          label="Summoner Name" 
+          type="search"
+          value={summonerName}
+          onChange={onSummonerInputChange}
+        />
+        <TextField
+          id="tagline-input"
+          label="Tag Line"
+          type="search"
+        />
+        <Button
+          variant="contained"
+          onClick={onButtonClick}
+        >
+          Find Summoner
+        </Button>
+      </search>
     </>
   );
 }
