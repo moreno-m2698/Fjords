@@ -114,6 +114,14 @@ section ul {
 --- */
 .matches__summary {
     border: 2px solid red;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+/* win-rate-graph-container
+--- */
+.win-rate-graph-container {
+
 }
 /*matches__list
 --- */

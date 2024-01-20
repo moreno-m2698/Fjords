@@ -26,9 +26,7 @@ function MatchDataContainer(props: MatchContainerProps) {
 
   return (
     <> 
-      <ul className="matches__summary">
-        <SummaryCard matches={matchDataArray} puuid={props.puuid}/>  
-      </ul>
+      <SummaryCard matches={matchDataArray} puuid={props.puuid}/>  
       <ol className='matches__list'>
         {matchDataArray.map((matchParticipant: MatchParticipant | undefined) => (
           <MatchCard key={matchParticipant!.matchId} puuid={props.puuid} matchId={matchParticipant!.matchId} matchParticipant={matchParticipant!} />
