@@ -1,6 +1,18 @@
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Allows us to do accessibility and hide the data for users who are not using those devices */
+.visually-hidden {
+    width: 1px;
+    overflow: hidden;
+    font-size: 0px;
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
 }
 
 body {
@@ -8,6 +20,11 @@ body {
     font-family: sans-serif;
     text-align: center;
     width: max(300px, 100%)
+}
+
+img {
+    width: 100%;
+    height: auto;
 }
 
 /* header
@@ -18,10 +35,10 @@ header {
     /* position: absolute; */
     border: 2px solid red;
     display: flex;
-    padding: 0 1em 0 1em;
+    padding: 0 1em;
     gap: 1em;
     align-items: center;
-    /* background-color: #131315; */
+    background-color: #070720;
 }
 
 header h1 {
@@ -35,8 +52,83 @@ search {
 }
 
 
+
 section ul {
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+/* account__summary
+--- */
+
+.account__summary {
+    border: 2px solid blue;
+    display: grid;
+    grid-template-columns: 105px 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    padding: .65rem;
+}
+
+.account__summary button {
+    width: 10rem
+}
+
+.grid-row-span-3 {
+    grid-row: span 3;
+}
+
+.account-profile-icon {
+    display: flex;
+    align-self: flex-end;
+}
+
+.account-name {
+    display: flex;
+    align-self: flex-end;
+}
+
+.account-level {
+    display: flex;
+    align-self: center;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+.account-profile-icon img {
+    width: 93px;
+    height: 93px;
+}
+
+
+/* account__matches
+--- */
+
+.account__matches {
+    border: 2px solid green;
+}
+
+/* matches__summary
+--- */
+.matches__summary {
+    border: 2px solid red;
+}
+/*matches__list
+--- */
+.matches__list {
+    border: 2px solid blue;
+}
+
+.champion__asset{
+    width: 80px;
+    height: 80px;
+}
+
+/*inventory
+--- */
+.inventory-item {
+    width: 22px;
+    height: 22px;
 }

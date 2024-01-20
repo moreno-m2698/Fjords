@@ -1,6 +1,7 @@
 import { Summoner } from "../../types";
 import { getAsset } from "../../services/assetApiCalls";
 import { useQuery } from "@tanstack/react-query";
+import { Button } from "@mui/material";
 
 
 interface summonerCardProps {
@@ -23,10 +24,33 @@ function SummonerCard(props: summonerCardProps) {
 
   return (
     <>
-      <h1>Name: {props.summoner?.name}</h1>
-      <h2>Tagline: #{props.summoner?.tagline}</h2>
-      <h3>Lvl:{props.summoner?.summonerLevel}</h3>
-      <img alt="Riot account icon" src={profileAsset} />
+      <div className="account-profile-icon grid-row-span-3" >
+        <img alt="Riot account icon" src={profileAsset} />
+      </div>
+      <div className="account-name">
+        <h2 className="text-align-left">
+          <span className="visually-hidden aria-only">
+            Account Name:&nbsp;
+          </span>
+          <span>
+            {props.summoner?.name}&nbsp;
+          </span>
+          <span>
+            #{props.summoner?.tagline}
+          </span>
+        </h2>
+      </div>
+      <div className="account-level">
+        <p className="text-align-left">
+          <span aria-label="Level">
+            Lvl: 
+          </span>{props.summoner?.summonerLevel}
+        </p>
+      </div>
+      <Button
+        variant="contained"
+      >Update
+      </Button>
     </>
   );
 }

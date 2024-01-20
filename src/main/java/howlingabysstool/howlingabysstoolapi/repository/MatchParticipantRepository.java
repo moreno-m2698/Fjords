@@ -14,4 +14,6 @@ public interface MatchParticipantRepository extends JpaRepository<MatchParticipa
 
     @Query("SELECT mp FROM match_participant mp WHERE mp.matchParticipantId = :matchParticipantId")
     Optional<MatchParticipant> getMatchParticipant(@Param("matchParticipantId") String matchParticipantId);
+
+//    @Query()
 }

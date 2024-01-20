@@ -23,9 +23,10 @@ function GraphComponent(props: GraphComponentProps) {
 
     if (statusTimeline ==="pending" || statusTimeline==="error" || timeline === undefined) return <h1>Trying timeline</h1>
 
+    //We will need to look at these graphs later
+
     return (
-        <>
-            <div>GraphComponent</div>
+        <div>
             <LineChart width={600} height={300} data={timeline[props.puuid]}>
                 <Line type="monotone" dataKey="damageDone" stroke="#8884d8" />
                 <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
@@ -47,7 +48,7 @@ function GraphComponent(props: GraphComponentProps) {
                 <YAxis />
                 <Tooltip />
             </LineChart>
-        </>
+        </div>
     )
 
 }

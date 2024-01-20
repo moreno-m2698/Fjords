@@ -35,4 +35,4 @@ spring:
     static-locations: classpath:/static/
 
 name: Development Setup
-riotApi: RGAPI-79afdd56-f1c4-4485-8caa-f39ffe6d716c
+riotApi: RGAPI-c19900ca-b7c0-4507-a178-0d20151faee5

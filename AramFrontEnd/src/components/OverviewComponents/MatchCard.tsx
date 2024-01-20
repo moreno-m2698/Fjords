@@ -40,22 +40,21 @@ function MatchCard(props: MatchCardProps) {
 
   return (
     <li>
-        <Accordion>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography>
-                    <h1>{props.matchId}</h1>
+        <article>
+            <Accordion>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography>          
+                        <img className="champion__asset"alt="Champion Image" src={championAssetUrl}/>
                         <p>KDA: {props.matchParticipant?.kills}/{props.matchParticipant?.deaths}/{props.matchParticipant?.assists}</p>
-                        <h2>Champion:</h2>
-                        <p>Name: {props.matchParticipant?.championName}</p>
-                        <img alt="Champion Image" src={championAssetUrl}/>
-                        <p>Win: {props.matchParticipant?.win ? 'true' : 'false'}</p>
-                </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-                <InventoryComponent inventory={items} />
-                <GraphComponent puuid={props.puuid} matchId={props.matchId} />
-            </AccordionDetails>
-        </Accordion>
+                        <p>Win: {props.matchParticipant?.win ? 'blue' : 'red'}</p>
+                    </Typography>
+                    <InventoryComponent inventory={items} />
+                </AccordionSummary>
+                <AccordionDetails>
+                    <GraphComponent puuid={props.puuid} matchId={props.matchId} />
+                </AccordionDetails>
+            </Accordion>
+        </article>
     </li>
   );
 }
