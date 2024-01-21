@@ -1,5 +1,5 @@
 
-import { LineChart, Line, XAxis, YAxis, CartesianGrid,Tooltip } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid,Tooltip, ResponsiveContainer } from 'recharts';
 import { useQuery } from "@tanstack/react-query";
 import { getMatchTimelineByMatchId } from '../../services/backendApiCalls';
 

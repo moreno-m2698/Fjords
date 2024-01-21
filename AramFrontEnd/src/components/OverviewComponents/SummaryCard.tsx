@@ -47,8 +47,8 @@ function SummaryCard(props: SummaryCardProps) {
   return (
     <>
     {/* responsive container needs to be set first for graph to render */}
-      <div className="matches__summary">
-        <div className='win-rate-graph-container'>
+      <ul className="matches__summary">
+        <li className='win-rate-graph-container grid-column-start-1'>
           <ResponsiveContainer>
             <PieChart width={500} height={400}>
               <Pie 
@@ -69,22 +69,16 @@ function SummaryCard(props: SummaryCardProps) {
               </Pie>
             </PieChart>
           </ResponsiveContainer>
-        </div>
-        <ul >
-          <li>Win Rate: {winAmount/props.matches.length}</li>
-          <li>Last {props.matches.length} games</li>
-          <li>{((averageKills + averageAssists) / averageDeaths).toFixed(2)} KDA</li>
-          <li>
-            {averageKills.toFixed(1)}K
-          </li>
-          <li>
-            {averageDeaths.toFixed(1)}D
-          </li>
-          <li>
-            {averageAssists.toFixed(1)}A
-          </li>
-        </ul>
-      </div>
+        </li>
+        <li className='grid-column-start-1'>Win Rate: {winAmount/props.matches.length}</li>
+        <li className='grid-column-start-2'>{((averageKills + averageAssists) / averageDeaths).toFixed(2)} KDA</li>
+        <li className='grid-column-start-1'>Last {props.matches.length} games</li>
+        <li className='grid-column-start-2'>
+          <span>{averageKills.toFixed(1)}</span>/
+          <span>{averageDeaths.toFixed(1)}</span>/
+          <span>{averageAssists.toFixed(1)}</span>
+        </li>
+      </ul>
     </>
   )
 }

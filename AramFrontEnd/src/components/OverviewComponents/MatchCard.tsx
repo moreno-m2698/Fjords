@@ -46,7 +46,6 @@ function MatchCard(props: MatchCardProps) {
                     <Typography>          
                         <img className="champion__asset"alt="Champion Image" src={championAssetUrl}/>
                         <p>KDA: {props.matchParticipant?.kills}/{props.matchParticipant?.deaths}/{props.matchParticipant?.assists}</p>
-                        <p>Win: {props.matchParticipant?.win ? 'blue' : 'red'}</p>
                     </Typography>
                     <InventoryComponent inventory={items} />
                 </AccordionSummary>
