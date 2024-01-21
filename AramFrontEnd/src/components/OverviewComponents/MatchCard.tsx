@@ -42,11 +42,9 @@ function MatchCard(props: MatchCardProps) {
     <li>
         <article>
             <Accordion>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography>          
-                        <img className="champion__asset"alt="Champion Image" src={championAssetUrl}/>
-                        <p>KDA: {props.matchParticipant?.kills}/{props.matchParticipant?.deaths}/{props.matchParticipant?.assists}</p>
-                    </Typography>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />} className="domain-expansion">   
+                    <img className="champion__asset"alt="Champion Image" src={championAssetUrl}/>
+                    <p>KDA: {props.matchParticipant?.kills}/{props.matchParticipant?.deaths}/{props.matchParticipant?.assists}</p>
                     <InventoryComponent inventory={items} />
                 </AccordionSummary>
                 <AccordionDetails>

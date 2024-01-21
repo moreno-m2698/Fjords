@@ -18,7 +18,7 @@ function InventoryComponent(props:InventoryComponentProps) {
   })
   
   return (
-    <ol>
+    <ol className="match-inventory">
       {inventoryQueries.map((itemQuery) => <li><img className="inventory-item" src={itemQuery.data}/></li>)}
     </ol>
   )
