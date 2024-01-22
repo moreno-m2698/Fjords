@@ -6,9 +6,14 @@ import { useState } from "react";
 
 function HomePage() {
   const [summonerName, setSummonerName] = useState<string>("");
+  const [tagline, setTagline] = useState<string>("NA1")
 
   const onSummonerInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSummonerName(e.target.value);
+  }
+
+  const onTaglineInputChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setTagline(e.target.value);
   }
 
   const onButtonClick = () => {
@@ -17,7 +22,7 @@ function HomePage() {
       alert("Give a name");
       return;
     }
-    window.location.href = `http://localhost:8080/#/summoner/${summonerName}`;
+    window.location.href = `http://localhost:8080/#/account/${summonerName}/${tagline}`;
   }
 
   return (
@@ -35,6 +40,8 @@ function HomePage() {
           id="tagline-input"
           label="Tag Line"
           type="search"
+          value={tagline}
+          onChange={onTaglineInputChange}
         />
         <Button
           variant="contained"

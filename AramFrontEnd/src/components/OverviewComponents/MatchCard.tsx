@@ -6,6 +6,7 @@ import { Accordion, AccordionSummary, AccordionDetails, Typography } from "@mui/
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import GraphComponent from './GraphComponent';
 import { MatchParticipant } from '../../types';
+import GraphOrganizer from './GraphOrganizer';
 
 
 interface MatchCardProps {
@@ -15,6 +16,7 @@ interface MatchCardProps {
 }
 
 function MatchCard(props: MatchCardProps) {
+
 
     const {
         status: statusChampionAssetUrl,
@@ -48,7 +50,7 @@ function MatchCard(props: MatchCardProps) {
                     <InventoryComponent inventory={items} />
                 </AccordionSummary>
                 <AccordionDetails>
-                    <GraphComponent puuid={props.puuid} matchId={props.matchId} />
+                    <GraphOrganizer puuid={props.puuid} matchId={props.matchId} />
                 </AccordionDetails>
             </Accordion>
         </article>

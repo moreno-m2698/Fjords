@@ -38,7 +38,7 @@ header {
     padding: 0 1em;
     gap: 1em;
     align-items: center;
-    background-color: #070720;
+    /* background-color: #070720; */
 }
 
 header h1 {
@@ -133,13 +133,13 @@ section ul {
 .grid-column-start-2 {
     grid-column: 2;
 }
+
 /*matches__list
 --- */
+
 .matches__list {
     border: 2px solid blue;
 }
-
-
 
 .domain-expansion > div:first-child {
     width: 100%;
@@ -162,7 +162,20 @@ section ul {
 }
 
 .inventory-item {
-
     width: 22px;
     height: 22px;
+}
+
+/* graphs
+--- */
+
+.organizer-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.graph-container {
+    display: flex;
+    height: 300px;
 }

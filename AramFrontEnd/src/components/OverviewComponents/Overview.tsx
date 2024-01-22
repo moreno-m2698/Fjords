@@ -16,7 +16,7 @@ interface AccountParams {
 function Overview() {
     const params = useParams();
     console.log("Inside the SummonerPage tagline: " + params.tagLine);
-    const matchLength = 5;
+    const matchLength = 20;
   
     const {
       status: statusSummoner,
