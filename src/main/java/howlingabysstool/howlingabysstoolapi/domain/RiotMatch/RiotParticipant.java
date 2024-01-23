@@ -12,6 +12,7 @@ import lombok.ToString;
 public class RiotParticipant {
     private int assists;
     private Challenge challenges;
+    private int champLevel;
     private int championId;
     private String championName;
     private int deaths;
@@ -26,5 +27,7 @@ public class RiotParticipant {
     private String riotIdName;
     private String riotIdTagline;
     private String summonerName;
+    private int summoner1Id;
+    private int summoner2Id;
     private boolean win;
 }

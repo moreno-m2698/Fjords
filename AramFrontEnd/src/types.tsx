@@ -10,6 +10,7 @@ export interface MatchParticipant {
     matchId: string,
     matchIndex: number,
     assists: number,
+    champLevel: number,
     championId: number,
     championName: string,
     deaths: number,
@@ -24,6 +25,8 @@ export interface MatchParticipant {
     riotIdName: string,
     riotIdTagline: string,
     summonerName:string,
+    summoner1Id: number,
+    summoner2Id: number,
     win: boolean
 
 }

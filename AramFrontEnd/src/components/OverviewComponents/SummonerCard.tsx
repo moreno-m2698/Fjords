@@ -47,10 +47,6 @@ function SummonerCard(props: summonerCardProps) {
           </span>{props.summoner?.summonerLevel}
         </p>
       </div>
-      <Button
-        variant="contained"
-      >Update
-      </Button>
     </>
   );
 }

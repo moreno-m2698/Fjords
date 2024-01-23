@@ -25,6 +25,8 @@ public class MatchParticipant {
     @Column(name = "match_index")
     private int matchIndex;
     private int assists;
+    @Column(name = "champ_level")
+    private int champLevel;
     @Column(name = "champion_id")
     private int championId;
     @Column(name = "champion_name")
@@ -44,11 +46,16 @@ public class MatchParticipant {
     private String riotIdTagline;
     @Column(name = "summoner_name")
     private String summonerName;
+    @Column(name = "summoner_1_id)")
+    private int summoner1Id;
+    @Column(name = "summoner_2_id")
+    private int summoner2Id;
     private boolean win;
 
     public MatchParticipant(RiotParticipant participant) {
         assists = participant.getAssists();
         championId = participant.getChampionId();
+        champLevel = participant.getChampLevel();
         championName = participant.getChampionName();
         deaths = participant.getDeaths();
         item0 = participant.getItem0();
@@ -62,6 +69,8 @@ public class MatchParticipant {
         riotIdName = participant.getRiotIdName();
         riotIdTagline = participant.getRiotIdTagline();
         summonerName = participant.getSummonerName();
+        summoner1Id = participant.getSummoner1Id();
+        summoner2Id = participant.getSummoner2Id();
         win = participant.isWin();
     }
 }

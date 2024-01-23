@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query"
 import { getMatchIdsByPuuid, getSummonerByRiotId } from '../../services/backendApiCalls';
 import SummonerCard from './SummonerCard';
 import MatchDataContainer from './MatchDataContainer';
+import { Button } from '@mui/material';
 
 //IMPORTANT: Somthing is happening where we are making the query calls twice
 
@@ -16,7 +17,7 @@ interface AccountParams {
 function Overview() {
     const params = useParams();
     console.log("Inside the SummonerPage tagline: " + params.tagLine);
-    const matchLength = 20;
+    const matchLength = 5;
   
     const {
       status: statusSummoner,
@@ -29,22 +30,37 @@ function Overview() {
   
     const { 
       status: statusMatchIds,
-      data: matchIds
+      isLoading: matchIdsIsLoading,
+      data: matchIds,
+      refetch: matchIdsRefetch
     } = useQuery({
       enabled: summoner?.puuid != null,
       queryKey: ["matchIds", summoner?.puuid],
       queryFn: () => getMatchIdsByPuuid(summoner!.puuid, matchLength)
     });
   
+    const handleMatchIdsRefresh = () => {
+      if (!matchIdsIsLoading) {
+        console.log("refetching matches")
+        matchIdsRefetch();
+      }
+    }
+    
+
     if (statusSummoner === "pending") return <h1>Loading Summoner...</h1>
     if (statusSummoner=== "error") return <h1>{JSON.stringify(errorSummoner)}</h1>
-    //keep ths log here until we figure out the double render
-    console.log(matchIds);
-    return (
-     
+
+    return ( 
       <> 
         <section className = 'account__summary'>
           <SummonerCard summoner={summoner!} />
+          <Button
+            variant="contained"
+            disabled={ matchIdsIsLoading}
+            onClick={() => handleMatchIdsRefresh()}
+          >
+            Update
+          </Button>
         </section>
         <section className='account__matches'>
           { statusMatchIds === "success" ? <MatchDataContainer matchIds={matchIds!} puuid={summoner!.puuid}/>: null}
