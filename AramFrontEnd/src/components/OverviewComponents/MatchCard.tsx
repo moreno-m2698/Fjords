@@ -1,12 +1,12 @@
-import { getMatchParticipant ,getMatchTimelineByMatchId } from '../../services/backendApiCalls';
+import { getMatchTimelineByMatchId } from '../../services/backendApiCalls';
 import { useQuery } from "@tanstack/react-query"
 import { getAsset } from '../../services/assetApiCalls';
 import InventoryComponent from './InventoryComponent';
-import { Accordion, AccordionSummary, AccordionDetails, Typography } from "@mui/material"
+import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
-import GraphComponent from './GraphComponent';
 import { MatchParticipant } from '../../types';
 import GraphOrganizer from './GraphOrganizer';
+import { useState } from 'react';
 
 
 interface MatchCardProps {
@@ -17,6 +17,8 @@ interface MatchCardProps {
 
 function MatchCard(props: MatchCardProps) {
 
+    const [hasBeenClicked, setHasBeenClicked] = useState<boolean>(false);
+    
 
     const {
         status: statusChampionAssetUrl,
@@ -40,17 +42,49 @@ function MatchCard(props: MatchCardProps) {
     console.log(items);
 
 
+    const {
+        status: statusTimeline,
+        error: errorTimeline,
+        data: timeline,
+        refetch: refetchTimeline,
+        isLoading: isTimelineLoading
+    } = useQuery({
+        enabled: false,
+        queryKey: ["timeline", props.matchId],
+        queryFn: () => getMatchTimelineByMatchId(props.matchId)
+    })
+
+    const accordionOnClick = () => {
+        if (!hasBeenClicked) {
+            setHasBeenClicked(true);    
+            refetchTimeline();
+            console.log("fetching timeline")
+        }
+    }
+
+
   return (
     <li>
         <article>
-            <Accordion>
+            <Accordion
+                onChange={accordionOnClick}
+            >
                 <AccordionSummary expandIcon={<ExpandMoreIcon />} className="domain-expansion">   
                     <img className="champion__asset"alt="Champion Image" src={championAssetUrl}/>
+                    <p>Level: {props.matchParticipant.champLevel}</p>
                     <p>KDA: {props.matchParticipant?.kills}/{props.matchParticipant?.deaths}/{props.matchParticipant?.assists}</p>
                     <InventoryComponent inventory={items} />
                 </AccordionSummary>
                 <AccordionDetails>
-                    <GraphOrganizer puuid={props.puuid} matchId={props.matchId} />
+                    
+                    {(statusTimeline ==="pending" || statusTimeline==="error" || timeline === undefined) ? <h1>Trying timeline</h1> :
+                    
+                    (isTimelineLoading ? (
+                        <p>Timeline is Loading</p>
+                    ) : (
+                        <GraphOrganizer timeline={timeline} puuid={props.puuid} matchId={props.matchId} />
+                    ))}
+                    
                 </AccordionDetails>
             </Accordion>
         </article>

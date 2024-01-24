@@ -15,5 +15,4 @@ public class Summoner {
     private String tagline;
     private Integer profileIconId;
     private Integer summonerLevel;
-
 }
