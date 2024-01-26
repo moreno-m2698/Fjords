@@ -1,0 +1,18 @@
+/*matches__list
+--- */
+
+.matches__list {
+    border: 2px solid blue;
+}
+
+.domain-expansion > div:first-child {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.champion__asset{
+    width: 80px;
+    height: 80px;
+}
+

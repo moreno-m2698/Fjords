@@ -25,16 +25,6 @@
     font-style: italic;
 }
 
-/* @font-face {
-    font-family: 'BeaufortForLoL';
-    src: url(../../assets/BeaufortForLoL-TTF/BeaufortforLOL-Medium.ttf) format('truetype');
-    font-weight:;
-}
-
-@font-face {
-    font-family: 'BeaufortForLoL';
-    src: url(../../assets/BeaufortForLoL-TTF/BeaufortforLOL-MediumItalic.ttf) format('truetype')
-} */
 
 @font-face {
     font-family: 'BeaufortForLoL';
@@ -46,7 +36,7 @@
 @font-face {
     font-family: 'BeaufortForLoL';
     src: url(../../assets/BeaufortForLoL-TTF/BeaufortforLOL-BoldItalic.ttf) format('truetype');
-    font-weight:bold;
+    font-weight: bold;
     font-style: italic;
 }
 
@@ -113,7 +103,9 @@ body {
     margin: 0;
     font-family: "Spiegel";
     text-align: center;
-    width: max(300px, 100%)
+    width: max(300px, 100%);
+    background-color: rgb(1, 10, 19);
+    color: rgb(240, 230, 210);
 }
 
 img {
@@ -140,6 +132,7 @@ header h1 {
     font-size: 2rem;
     margin: 0;
     font-family: "BeaufortForLoL";
+    color: rgb(200, 155, 60);
 }
 
 search {
@@ -181,6 +174,7 @@ section ul {
 .account-name {
     display: flex;
     align-self: flex-end;
+    font-family: 'BeaufortForLoL';
 }
 
 .account-level {
@@ -229,23 +223,6 @@ section ul {
     grid-column: 2;
 }
 
-/*matches__list
---- */
-
-.matches__list {
-    border: 2px solid blue;
-}
-
-.domain-expansion > div:first-child {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-.champion__asset{
-    width: 80px;
-    height: 80px;
-}
 
 /*inventory
 --- */

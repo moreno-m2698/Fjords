@@ -2,11 +2,12 @@ import { getMatchTimelineByMatchId } from '../../services/backendApiCalls';
 import { useQuery } from "@tanstack/react-query"
 import { getAsset } from '../../services/assetApiCalls';
 import InventoryComponent from './InventoryComponent';
-import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material"
+import { Accordion, AccordionSummary, AccordionDetails, createTheme, ThemeProvider } from "@mui/material"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import { MatchParticipant } from '../../types';
 import GraphOrganizer from './GraphOrganizer';
 import { useState } from 'react';
+import "../../CSS/matchCard.css"
 
 
 interface MatchCardProps {
@@ -14,6 +15,9 @@ interface MatchCardProps {
     matchId: string
     matchParticipant: MatchParticipant
 }
+
+
+
 
 function MatchCard(props: MatchCardProps) {
 
@@ -62,31 +66,88 @@ function MatchCard(props: MatchCardProps) {
         }
     }
 
+    const blueTheme = createTheme({
+        components: {
+            MuiAccordion:{
+                styleOverrides: {
+                    root: {
+                        backgroundColor: "#17172e",
+                        color: "rgb(240, 230, 210)"
+
+                    }
+                }
+            },
+            MuiAccordionDetails: {
+                styleOverrides: {
+                    root: {
+                        backgroundColor: "#1E282D"
+                    }
+                }
+            },
+            MuiButton: {
+                styleOverrides: {
+                    text: "rgb(240, 230, 210)"
+                }
+
+            }
+        }
+    })
+
+    const redTheme = createTheme({
+        components: {
+            MuiAccordion:{
+                styleOverrides: {
+                    root: {
+                        backgroundColor: "#45192b",
+                        color: "rgb(240, 230, 210)"
+                    }
+                }
+            },
+            MuiAccordionDetails: {
+                styleOverrides: {
+                    root: {
+                        backgroundColor: "#1E282D"
+                    }
+                }
+            },
+            MuiButton: {
+                styleOverrides: {
+                    text: "rgb(240, 230, 210)"
+                }
+
+            }
+        }
+    })
+
 
   return (
     <li>
         <article>
-            <Accordion
-                onChange={accordionOnClick}
-            >
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} className="domain-expansion">   
-                    <img className="champion__asset"alt="Champion Image" src={championAssetUrl}/>
-                    <p>Level: {props.matchParticipant.champLevel}</p>
-                    <p>KDA: {props.matchParticipant?.kills}/{props.matchParticipant?.deaths}/{props.matchParticipant?.assists}</p>
-                    <InventoryComponent inventory={items} />
-                </AccordionSummary>
-                <AccordionDetails>
-                    
-                    {(statusTimeline ==="pending" || statusTimeline==="error" || timeline === undefined) ? <h1>Trying timeline</h1> :
-                    
-                    (isTimelineLoading ? (
-                        <p>Timeline is Loading</p>
-                    ) : (
-                        <GraphOrganizer timeline={timeline} puuid={props.puuid} matchId={props.matchId} />
-                    ))}
-                    
-                </AccordionDetails>
-            </Accordion>
+            <ThemeProvider theme={props.matchParticipant.win ? blueTheme: redTheme} >
+                <Accordion
+                    onChange={accordionOnClick}
+                >
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />} className="domain-expansion">  
+                        <div>
+                            <img className="champion__asset"alt="Champion Image" src={championAssetUrl}/>
+                            <p>{props.matchParticipant.champLevel}</p>
+                        </div> 
+                        <p>KDA: {props.matchParticipant?.kills}/{props.matchParticipant?.deaths}/{props.matchParticipant?.assists}</p>
+                        <InventoryComponent inventory={items} />
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        
+                        {(statusTimeline ==="pending" || statusTimeline==="error" || timeline === undefined) ? <h1>Trying timeline</h1> :
+                        
+                        (isTimelineLoading ? (
+                            <p>Timeline is Loading</p>
+                        ) : (
+                            <GraphOrganizer timeline={timeline} puuid={props.puuid} matchId={props.matchId} />
+                        ))}
+                        
+                    </AccordionDetails>
+                </Accordion>
+            </ThemeProvider>
         </article>
     </li>
   );
