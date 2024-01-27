@@ -48,7 +48,7 @@ function Overview() {
     
 
     if (statusSummoner === "pending") return <h1>Loading Summoner...</h1>
-    if (statusSummoner=== "error") return <h1>{JSON.stringify(errorSummoner)}</h1>
+    if (statusSummoner=== "error") return <h1>There was an Error Grabbing Summoner</h1>
 
     return ( 
       <> 
