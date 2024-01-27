@@ -127,18 +127,29 @@ function MatchCard(props: MatchCardProps) {
                 <Accordion
                     onChange={accordionOnClick}
                 >
-                    <AccordionSummary expandIcon={<ExpandMoreIcon />} className="domain-expansion">  
-                        <div>
-                            <img className="champion__asset"alt="Champion Image" src={championAssetUrl}/>
-                            <p>{props.matchParticipant.champLevel}</p>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon style={{color: 'white'}}/>} className="domain-expansion">  
+                        <div className='champion__asset'>
+                            <div className="champion__asset__img">
+                                <img alt="Champion Image" src={championAssetUrl}/>
+                            </div>
+                            <div className="match-level-container">
+                                <p>{props.matchParticipant.champLevel}</p>
+                            </div>
                         </div> 
-                        <p>KDA: {props.matchParticipant?.kills}/{props.matchParticipant?.deaths}/{props.matchParticipant?.assists}</p>
+                        <p>KDA:&nbsp;
+                            <span>
+                                {props.matchParticipant?.kills}&nbsp;
+                            </span>/&nbsp;
+                            <span>
+                                {props.matchParticipant?.deaths}&nbsp;
+                            </span>/&nbsp;
+                            <span>
+                                {props.matchParticipant?.assists}&nbsp;
+                            </span></p>
                         <InventoryComponent inventory={items} />
                     </AccordionSummary>
                     <AccordionDetails>
-                        
                         {(statusTimeline ==="pending" || statusTimeline==="error" || timeline === undefined) ? <h1>Trying timeline</h1> :
-                        
                         (isTimelineLoading ? (
                             <p>Timeline is Loading</p>
                         ) : (

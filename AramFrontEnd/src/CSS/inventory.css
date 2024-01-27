@@ -1,0 +1,17 @@
+/*inventory
+--- */
+
+.match-inventory-container {
+    display: flex;
+}
+
+.match-inventory{
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 24px);
+    gap: .25rem;
+}
+
+.match-inventory-top-row {
+    align-self: end;
+}

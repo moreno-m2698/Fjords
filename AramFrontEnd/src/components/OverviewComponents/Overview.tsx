@@ -4,7 +4,7 @@ import { getMatchIdsByPuuid, getSummonerByRiotId } from '../../services/backendA
 import SummonerCard from './SummonerCard';
 import MatchDataContainer from './MatchDataContainer';
 import { Button } from '@mui/material';
-
+import '../../CSS/accountSummary.css'
 //IMPORTANT: Somthing is happening where we are making the query calls twice
 
 //React query still causes us to download imgs to client on each call, maybe we should try hosting assets in a repo instead.
@@ -17,7 +17,7 @@ interface AccountParams {
 function Overview() {
     const params = useParams();
     console.log("Inside the SummonerPage tagline: " + params.tagLine);
-    const matchLength = 5;
+    const matchLength = 20;
   
     const {
       status: statusSummoner,

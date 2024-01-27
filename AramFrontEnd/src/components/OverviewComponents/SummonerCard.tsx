@@ -35,7 +35,7 @@ function SummonerCard(props: summonerCardProps) {
           <span>
             {props.summoner?.name}&nbsp;
           </span>
-          <span>
+          <span className="tagline-text">
             #{props.summoner?.tagline}
           </span>
         </h2>
@@ -43,7 +43,7 @@ function SummonerCard(props: summonerCardProps) {
       <div className="account-level">
         <p className="text-align-left">
           <span aria-label="Level">
-            Lvl: 
+            Lvl:&nbsp; 
           </span>{props.summoner?.summonerLevel}
         </p>
       </div>

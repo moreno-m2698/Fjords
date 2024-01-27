@@ -2,7 +2,11 @@
 --- */
 
 .matches__list {
-    border: 2px solid blue;
+    list-style: none;
+}
+
+.matches__list li {
+    margin-bottom: .5rem;
 }
 
 .domain-expansion > div:first-child {
@@ -11,8 +15,40 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.champion__asset{
+.match-level-container {
+    background-color: #010A13;
+    font-family: 'BeaufortForLoL';
+    border-radius: 4px;
+    color: #C8AA6E;
+    width: 23.36px;
+    height: 23px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    z-index: 1;
+    grid-column: 1;
+    grid-row: 1;
+    place-self: end;
+    margin: 4px 0px;
+}
+
+.champion__asset {
     width: 80px;
     height: 80px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    
+}
+
+.champion__asset__img {
+    width: 80px;
+    grid-column: 1;
+    grid-row: 1;
+    place-self: end;
+}
+
+.champion__asset__img img {
+    border-radius: 6px;
 }
 

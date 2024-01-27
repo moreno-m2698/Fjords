@@ -1,0 +1,41 @@
+.account__summary {
+    margin: 0rem 1.5rem;
+    display: grid;
+    grid-template-columns: 105px 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    padding: .65rem;
+    grid-gap: 0 .65rem;
+    background-color: #1E232880;
+}
+
+.account__summary button {
+    width: 10rem
+}
+
+.grid-row-span-3 {
+    grid-row: span 3;
+}
+
+.account-profile-icon {
+    display: flex;
+    align-self: flex-end;
+}
+
+.account-name {
+    display: flex;
+    align-self: flex-end;
+    font-family: 'BeaufortForLoL';
+}
+
+.account-level {
+    display: flex;
+    align-self: center;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+.tagline-text {
+    color: #785A28;
+}

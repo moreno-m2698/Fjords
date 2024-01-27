@@ -21,28 +21,30 @@ function GraphOrganizer(props:GraphOrganizerProps) {
 
     return (
         <>
-            <div className='organizer-tabs'>
-                <Button
-                    variant='contained'
-                    onClick={() => changeDataKey(0)}
-                >
-                    Attack Damage
-                </Button>
-                <Button 
-                    variant='contained'
-                    onClick={() => changeDataKey(1)}
-                >
-                    Damage Taken
-                </Button>
-                <Button
-                    variant='contained'
-                    onClick={() => changeDataKey(2)}
-                >
-                    Gold Earned
-                </Button>
-            </div>
-            <div className='graph-container'>
-                <GraphComponent timeline={props.timeline} puuid={props.puuid} matchId={props.matchId} datakey={dataKey}/>
+            <div className='data-container'>
+                <div className='organizer-tabs'>
+                    <Button
+                        variant='contained'
+                        onClick={() => changeDataKey(0)}
+                    >
+                        Attack Damage
+                    </Button>
+                    <Button 
+                        variant='contained'
+                        onClick={() => changeDataKey(1)}
+                    >
+                        Damage Taken
+                    </Button>
+                    <Button
+                        variant='contained'
+                        onClick={() => changeDataKey(2)}
+                    >
+                        Gold Earned
+                    </Button>
+                </div>
+                <div className='graph-container'>
+                    <GraphComponent timeline={props.timeline} puuid={props.puuid} matchId={props.matchId} datakey={dataKey}/>
+                </div>
             </div>
         </>
     )

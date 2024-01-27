@@ -19,7 +19,7 @@ public class RiotFrame {
 
     public FjordFrame getFjordFrame(String participantId) {
         ParticipantFrame participantFrame = this.participantFrames.get(participantId);
-        int timestamp = this.getTimestamp();
+        int timestamp = this.getTimestamp()/60000;
         int damageDoneToChampions = participantFrame.getDamageStats().getTotalDamageDoneToChampions();
         int damageTaken = participantFrame.getDamageStats().getTotalDamageTaken();
         int totalGold = participantFrame.getTotalGold();
