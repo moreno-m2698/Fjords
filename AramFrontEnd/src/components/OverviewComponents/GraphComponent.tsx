@@ -21,7 +21,7 @@ function GraphComponent(props: GraphComponentProps) {
                 <LineChart width={600} height={300} data={props.timeline[props.puuid]}>
                     <Line type="monotone" dataKey={props.datakey} stroke="#8884d8" />
                     <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                    <XAxis dataKey="timestamp" />
+                    <XAxis dataKey="timestamp" unit="min" interval={4}/>
                     <YAxis />
                     <Tooltip />
                 </LineChart>
