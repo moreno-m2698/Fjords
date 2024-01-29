@@ -1,3 +1,29 @@
+.account-page-background {
+    top: 60px;
+    position: fixed;
+    z-index: -1;
+    height: 100vh;
+    inset: 0;
+    width: 100vw;
+
+}
+
+.account-page-background::after {
+    background: radial-gradient(circle, rgba(255,255,255,0) 48%, rgba(0,0,0,1) 100%);
+    content: "";
+    inset: 0;
+    position: absolute;
+    z-index: 0;
+    backdrop-filter: blur(1px);
+}
+
+
+.account-page-info {
+    width: 100%;
+    top: 60px;
+    z-index: 1;
+}
+
 .account__summary {
     margin: 0rem 1.5rem;
     display: grid;
@@ -5,7 +31,8 @@
     grid-template-rows: repeat(3, 1fr);
     padding: .65rem;
     grid-gap: 0 .65rem;
-    background-color: #1E232880;
+    background-color: #1E2328f7;
+    z-index: 1;
 }
 
 .account__summary button {

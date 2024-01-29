@@ -5,6 +5,7 @@ import SummonerCard from './SummonerCard';
 import MatchDataContainer from './MatchDataContainer';
 import { Button } from '@mui/material';
 import '../../CSS/accountSummary.css'
+import background from '../../../assets/images/the_legend_of_the_frozen_watchers.jpg'
 //IMPORTANT: Somthing is happening where we are making the query calls twice
 
 //React query still causes us to download imgs to client on each call, maybe we should try hosting assets in a repo instead.
@@ -51,20 +52,23 @@ function Overview() {
     if (statusSummoner=== "error") return <h1>There was an Error Grabbing Summoner</h1>
 
     return ( 
-      <> 
-        <section className = 'account__summary'>
-          <SummonerCard summoner={summoner!} />
-          <Button
-            variant="contained"
-            disabled={ matchIdsIsLoading}
-            onClick={() => handleMatchIdsRefresh()}
-          >
-            Update
-          </Button>
-        </section>
-        <section className='account__matches'>
-          { statusMatchIds === "success" ? <MatchDataContainer matchIds={matchIds!} puuid={summoner!.puuid}/>: null}
-        </section>
+      <>
+        <img className='account-page-background' src={background}/>
+        <div className='account-page-info'>
+          <section className = 'account__summary'>
+            <SummonerCard summoner={summoner!} />
+            <Button
+              variant="contained"
+              disabled={ matchIdsIsLoading}
+              onClick={() => handleMatchIdsRefresh()}
+            >
+              Update
+            </Button>
+          </section>
+          <section className='account__matches'>
+            { statusMatchIds === "success" ? <MatchDataContainer matchIds={matchIds!} puuid={summoner!.puuid}/>: null}
+          </section>
+        </div>
       </>
     );
 }

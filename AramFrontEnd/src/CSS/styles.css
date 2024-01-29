@@ -123,6 +123,11 @@ img {
     display: flex;
     padding: 0 1rem;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: rgb(1, 10, 19);
+
 }
 
 header h1 {
