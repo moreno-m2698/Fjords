@@ -43,7 +43,7 @@ function Searchbar() {
   }
 
   return (
-    <header> 
+    <header className='account-header'> 
         <h1>Fjords</h1>
         <search className='account-page-searchbar'>
           <TextField

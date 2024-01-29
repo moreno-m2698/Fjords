@@ -117,13 +117,12 @@ img {
 
 --- */
 
-header {
+.account-header {
     /* position: absolute; */
     border: 2px solid #C89B3C;
     display: flex;
     padding: 0 1rem;
     align-items: center;
-    /* background-color: #070720; */
 }
 
 header h1 {

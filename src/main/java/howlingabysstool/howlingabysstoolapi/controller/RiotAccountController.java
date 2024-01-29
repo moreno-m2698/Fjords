@@ -28,12 +28,6 @@ public class RiotAccountController {
         return new ResponseEntity<>(riotAccount, HttpStatus.OK);
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<RiotAccount> test() {
-        RiotAccount test = riotAccountService.test();
-        return new ResponseEntity<>(test, HttpStatus.OK);
-
-    }
 
 
 }
