@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Deprecated
 @RestController
 @RequestMapping("/api/account")
 public class RiotAccountController {
@@ -21,6 +22,7 @@ public class RiotAccountController {
         this.riotAccountService = riotAccountService;
         this.summonerService = summonerService;
     }
+
 
     @GetMapping("/by-riot-id/{gameName}/{tagLine}")
     public ResponseEntity<RiotAccount> getRiotAccountByRiotId(@PathVariable String gameName, @PathVariable String tagLine) {

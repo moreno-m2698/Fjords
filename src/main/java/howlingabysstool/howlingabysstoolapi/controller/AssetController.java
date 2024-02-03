@@ -22,7 +22,7 @@ public class AssetController {
         this.assetService = assetService;
     }
     @GetMapping("/{subdir}/{asset}")
-    public ResponseEntity<byte[]> getChampionSquare(@PathVariable String subdir,
+    public ResponseEntity<byte[]> getAsset(@PathVariable String subdir,
                                                     @PathVariable String asset)  {
         Optional<byte[]> result = assetService.getAsset(subdir, asset);
 

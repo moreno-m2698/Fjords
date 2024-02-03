@@ -44,7 +44,7 @@ public class RiotMatchServiceImpl implements RiotMatchService {
 
     @Override
     public List<String> getAramMatchIdsByPuuid(String puuid, int amount) {
-        String fullApiString = apiUrl + "by-puuid/" + puuid + "/ids?queue=" + MatchQueueEnum.ARAM.queueId + "&" + "&start=0&count=" + amount + "&api_key=" + myConfig.getRiotApi();
+        String fullApiString = apiUrl + "by-puuid/" + puuid + "/ids?queue=" + MatchQueueEnum.ARAM.queueId + "&" + "start=0&count=" + amount + "&api_key=" + myConfig.getRiotApi();
         System.out.println((fullApiString));
         return restTemplate.getForObject(fullApiString, List.class);
     }
