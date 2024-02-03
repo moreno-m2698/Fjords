@@ -28,14 +28,6 @@ jobs:
       - name: Build with maven
         run: mvn -B package --file pom.xml
 
-  publish:
-    needs: build
+#  publish:
+#    needs: build
 
----
-
-name: Deploy to Amazon EC2
-
-on:
-  push:
-    branches:
-      - main
