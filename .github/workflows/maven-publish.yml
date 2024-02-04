@@ -22,7 +22,7 @@ jobs:
           cache: 'maven'
           cache-dependency-path: 'pom.xml'
 
-      - name: Add productionkey
+      - name: Add production key
         run: |
           touch src/main/resources/productionKey.txt
           echo ${{ secrets.RIOT_API_KEY }} >> src/main/resources/productionKey.txt

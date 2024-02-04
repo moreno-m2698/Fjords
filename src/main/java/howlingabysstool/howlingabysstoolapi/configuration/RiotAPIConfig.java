@@ -14,7 +14,7 @@ import java.io.IOException;
 public class RiotAPIConfig {
     private String key;
     public RiotAPIConfig() throws IOException {
-        String file ="src/main/resources/productionKey.txt";
+        String file ="target/classes/productionKey.txt";
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String key = reader.readLine();
         reader.close();
