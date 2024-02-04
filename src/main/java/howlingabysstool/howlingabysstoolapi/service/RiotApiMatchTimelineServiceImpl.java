@@ -20,7 +20,6 @@ public class RiotApiMatchTimelineServiceImpl implements RiotApiMatchTimelineServ
     @Override
     public RiotApiMatchTimeline getMatchTimeline(String matchId) {
         String apiUrl = apiString + matchId + "/timeline?api_key=" + myConfig.getRiotApi();
-        System.out.println(apiUrl);
         return restTemplate.getForObject(apiUrl, RiotApiMatchTimeline.class);
     }
 
