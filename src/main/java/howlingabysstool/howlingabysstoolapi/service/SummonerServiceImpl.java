@@ -1,5 +1,6 @@
 package howlingabysstool.howlingabysstoolapi.service;
 
+import howlingabysstool.howlingabysstoolapi.configuration.RiotAPIConfig;
 import howlingabysstool.howlingabysstoolapi.configuration.YamlConfig;
 import howlingabysstool.howlingabysstoolapi.domain.RiotAccount;
 import howlingabysstool.howlingabysstoolapi.domain.Summoner;
@@ -12,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 @Log4j2
 public class SummonerServiceImpl implements SummonerService{
     @Autowired
-    private YamlConfig myConfig;
+    private RiotAPIConfig myConfig;
 
     private final String SUMMONER_URL = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/";
     private final RiotAccountService riotAccountService;
@@ -25,7 +26,7 @@ public class SummonerServiceImpl implements SummonerService{
     }
     @Override
     public Summoner getSummonerByPuuid(String puuid) {
-        String fullApiUrl = SUMMONER_URL + "by-puuid/" + puuid + "?api_key="+ myConfig.getRiotApi();
+        String fullApiUrl = SUMMONER_URL + "by-puuid/" + puuid + "?api_key="+ myConfig.getKey();
         return restTemplate.getForObject(fullApiUrl, Summoner.class);
     }
     @Override

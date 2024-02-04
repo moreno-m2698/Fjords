@@ -1,5 +1,6 @@
 package howlingabysstool.howlingabysstoolapi.service;
 
+import howlingabysstool.howlingabysstoolapi.configuration.RiotAPIConfig;
 import howlingabysstool.howlingabysstoolapi.configuration.YamlConfig;
 import howlingabysstool.howlingabysstoolapi.domain.FjordDbModels.Match;
 import howlingabysstool.howlingabysstoolapi.domain.FjordDbModels.MatchParticipant;
@@ -19,7 +20,7 @@ import java.util.Optional;
 public class RiotMatchServiceImpl implements RiotMatchService {
 
     @Autowired
-    private YamlConfig myConfig;
+    private RiotAPIConfig myConfig;
     private final String apiUrl = "https://americas.api.riotgames.com/lol/match/v5/matches/";
     private final RestTemplate restTemplate;
     @Autowired
@@ -36,14 +37,14 @@ public class RiotMatchServiceImpl implements RiotMatchService {
 
     @Override
     public RiotMatch getMatchByMatchId(String matchId) {
-        String fullApiUrl = apiUrl + matchId + "/?api_key=" + myConfig.getRiotApi();
+        String fullApiUrl = apiUrl + matchId + "/?api_key=" + myConfig.getKey();
         RiotMatch match = restTemplate.getForObject(fullApiUrl, RiotMatch.class);
         return match;
     }
 
     @Override
     public List<String> getAramMatchIdsByPuuid(String puuid, int amount) {
-        String fullApiString = apiUrl + "by-puuid/" + puuid + "/ids?queue=" + MatchQueueEnum.ARAM.queueId + "&" + "start=0&count=" + amount + "&api_key=" + myConfig.getRiotApi();
+        String fullApiString = apiUrl + "by-puuid/" + puuid + "/ids?queue=" + MatchQueueEnum.ARAM.queueId + "&" + "start=0&count=" + amount + "&api_key=" + myConfig.getKey();
         return restTemplate.getForObject(fullApiString, List.class);
     }
 

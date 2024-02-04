@@ -1,5 +1,6 @@
 package howlingabysstool.howlingabysstoolapi.service;
 
+import howlingabysstool.howlingabysstoolapi.configuration.RiotAPIConfig;
 import howlingabysstool.howlingabysstoolapi.configuration.YamlConfig;
 import howlingabysstool.howlingabysstoolapi.domain.RiotAccount;
 import howlingabysstool.howlingabysstoolapi.repository.RiotAccountRepository;
@@ -13,7 +14,7 @@ import java.util.Optional;
 @Service
 public class RiotAccountServiceImpl implements RiotAccountService{
     @Autowired
-    private YamlConfig myConfig;
+    private RiotAPIConfig myConfig;
     private final String BASE_URL = "https://americas.api.riotgames.com/riot/account/v1/accounts/";
     private final RestTemplate restTemplate;
     @Autowired
@@ -25,14 +26,14 @@ public class RiotAccountServiceImpl implements RiotAccountService{
 
     @Override
     public RiotAccount getRiotAccountByRiotId(String gameName, String tagLine) {
-        String fullApiUrl = BASE_URL + "by-riot-id/" + gameName + '/' + tagLine + "?api_key=" + myConfig.getRiotApi();
+        String fullApiUrl = BASE_URL + "by-riot-id/" + gameName + '/' + tagLine + "?api_key=" + myConfig.getKey();
         return restTemplate.getForObject(fullApiUrl, RiotAccount.class);
     }
 
 
     @Override
     public String getRiotAccountPuuidByRiotId(String gameName, String tagLine) {
-        String riotUrl = BASE_URL + "by-riot-id/" + gameName + "/" + tagLine + "?api_key=" + myConfig.getRiotApi();
+        String riotUrl = BASE_URL + "by-riot-id/" + gameName + "/" + tagLine + "?api_key=" + myConfig.getKey();
         RiotAccount newAccount = restTemplate.getForObject(riotUrl, RiotAccount.class);
         return newAccount.getPuuid();
     }
@@ -45,7 +46,7 @@ public class RiotAccountServiceImpl implements RiotAccountService{
 
         if (accountOptional.isEmpty()) {
 
-            String riotUrl = BASE_URL + "by-riot-id/" + gameName + "/" + tagLine + "?api_key=" + myConfig.getRiotApi();
+            String riotUrl = BASE_URL + "by-riot-id/" + gameName + "/" + tagLine + "?api_key=" + myConfig.getKey();
             RiotAccount newAccount = restTemplate.getForObject(riotUrl, RiotAccount.class);
             newAccount.setAddDate(LocalDate.now());
             riotAccountRepository.save(newAccount);

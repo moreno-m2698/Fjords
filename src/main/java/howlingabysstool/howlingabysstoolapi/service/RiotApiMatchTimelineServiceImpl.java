@@ -1,5 +1,6 @@
 package howlingabysstool.howlingabysstoolapi.service;
 
+import howlingabysstool.howlingabysstoolapi.configuration.RiotAPIConfig;
 import howlingabysstool.howlingabysstoolapi.configuration.YamlConfig;
 
 import howlingabysstool.howlingabysstoolapi.domain.RiotApiMatchTimeline.RiotApiMatchTimeline;
@@ -10,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class RiotApiMatchTimelineServiceImpl implements RiotApiMatchTimelineService {
     @Autowired
-    private YamlConfig myConfig;
+    private RiotAPIConfig myConfig;
     private final String apiString = "https://americas.api.riotgames.com/lol/match/v5/matches/";
     private final RestTemplate restTemplate;
 
@@ -19,7 +20,7 @@ public class RiotApiMatchTimelineServiceImpl implements RiotApiMatchTimelineServ
     }
     @Override
     public RiotApiMatchTimeline getMatchTimeline(String matchId) {
-        String apiUrl = apiString + matchId + "/timeline?api_key=" + myConfig.getRiotApi();
+        String apiUrl = apiString + matchId + "/timeline?api_key=" + myConfig.getKey();
         return restTemplate.getForObject(apiUrl, RiotApiMatchTimeline.class);
     }
 
