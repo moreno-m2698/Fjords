@@ -38,14 +38,12 @@ public class RiotMatchServiceImpl implements RiotMatchService {
     public RiotMatch getMatchByMatchId(String matchId) {
         String fullApiUrl = apiUrl + matchId + "/?api_key=" + myConfig.getRiotApi();
         RiotMatch match = restTemplate.getForObject(fullApiUrl, RiotMatch.class);
-        System.out.println(match);
         return match;
     }
 
     @Override
     public List<String> getAramMatchIdsByPuuid(String puuid, int amount) {
         String fullApiString = apiUrl + "by-puuid/" + puuid + "/ids?queue=" + MatchQueueEnum.ARAM.queueId + "&" + "start=0&count=" + amount + "&api_key=" + myConfig.getRiotApi();
-        System.out.println((fullApiString));
         return restTemplate.getForObject(fullApiString, List.class);
     }
 
