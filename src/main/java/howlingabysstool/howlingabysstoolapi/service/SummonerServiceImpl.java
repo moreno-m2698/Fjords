@@ -1,7 +1,6 @@
 package howlingabysstool.howlingabysstoolapi.service;
 
 import howlingabysstool.howlingabysstoolapi.configuration.RiotAPIConfig;
-import howlingabysstool.howlingabysstoolapi.configuration.YamlConfig;
 import howlingabysstool.howlingabysstoolapi.domain.RiotAccount;
 import howlingabysstool.howlingabysstoolapi.domain.Summoner;
 import lombok.extern.log4j.Log4j2;

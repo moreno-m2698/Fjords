@@ -1,7 +1,6 @@
 package howlingabysstool.howlingabysstoolapi.service;
 
 import howlingabysstool.howlingabysstoolapi.configuration.RiotAPIConfig;
-import howlingabysstool.howlingabysstoolapi.configuration.YamlConfig;
 
 import howlingabysstool.howlingabysstoolapi.domain.RiotApiMatchTimeline.RiotApiMatchTimeline;
 import org.springframework.beans.factory.annotation.Autowired;

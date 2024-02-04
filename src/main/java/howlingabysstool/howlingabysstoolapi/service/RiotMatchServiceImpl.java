@@ -1,7 +1,6 @@
 package howlingabysstool.howlingabysstoolapi.service;
 
 import howlingabysstool.howlingabysstoolapi.configuration.RiotAPIConfig;
-import howlingabysstool.howlingabysstoolapi.configuration.YamlConfig;
 import howlingabysstool.howlingabysstoolapi.domain.FjordDbModels.Match;
 import howlingabysstool.howlingabysstoolapi.domain.FjordDbModels.MatchParticipant;
 import howlingabysstool.howlingabysstoolapi.domain.RiotMatch.RiotMatch;
