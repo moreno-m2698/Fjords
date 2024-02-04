@@ -1,7 +1,6 @@
 package howlingabysstool.howlingabysstoolapi.service;
 
 import howlingabysstool.howlingabysstoolapi.configuration.YamlConfig;
-import howlingabysstool.howlingabysstoolapi.controller.RiotAccountController;
 import howlingabysstool.howlingabysstoolapi.domain.RiotAccount;
 import howlingabysstool.howlingabysstoolapi.repository.RiotAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
