@@ -15,7 +15,7 @@ public class AssetServiceImpl implements AssetService{
     //TODO: CTRL+SHIFT+T for tests
 
     private final String PATCH_VERSION = "14.1.1";
-    private final String ASSET_DIR = ".\\src\\main\\resources\\ddragon\\" + PATCH_VERSION + "\\img\\";
+    private final String ASSET_DIR = "classpath:ddragon/" + PATCH_VERSION + "/img/";
     public AssetServiceImpl() {
     }
     @Override
