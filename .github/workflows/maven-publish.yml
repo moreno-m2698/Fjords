@@ -37,23 +37,23 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker Image
-        run: docker build -t morenom2698/Fjords-application .
+        run: docker build -t morenom2698/fjords-application .
 
       - name: Publish Image
-        run: docker push morenom2698/Fjords-application:latest
+        run: docker push morenom2698/fjords-application:latest
 
   deploy:
     needs: build
     runs-on: [aws-ec2]
     steps:
       - name: Pull Image from Docker Hub
-        run: docker pull morenom2698/Fjords-application:latest
+        run: docker pull morenom2698/fjords-application:latest
 
       - name: Clean up containers
         run: docker rm -f fjords-app-container
 
       - name: Run docker container
-        run: docker run -d -p 8080:8080 --name fjords-app-container morenom2698/Fjords-application
+        run: docker run -d -p 8080:8080 --name fjords-app-container morenom2698/fjords-application
 #  publish:
 #    needs: build
 
