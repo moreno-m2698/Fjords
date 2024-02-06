@@ -44,7 +44,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: [aws-ec2]
+    runs-on: [aws-ec2-2]
     steps:
       - name: Pull Image from Docker Hub
         run: docker pull morenom2698/fjords-application:latest
