@@ -47,13 +47,12 @@ jobs:
     runs-on: [aws-ec2]
     steps:
       - name: Pull Image from Docker Hub
-        run: docker pull morenom2698/fjords-application:latest
+        run: docker image pull morenom2698/fjords-application:latest
 
       - name: Clean up containers
         run: docker rm -f fjords-app-container
 
       - name: Run docker container
         run: docker run -d -p 8080:8080 --name fjords-app-container morenom2698/fjords-application
-#  publish:
-#    needs: build
+
 
