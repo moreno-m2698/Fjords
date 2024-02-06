@@ -21,7 +21,7 @@ function Searchbar() {
       alert("Give a name");
       return;
     }
-    window.location.href = `http://localhost:8080/#/account/${summonerName}/${tagline}`;
+    window.location.href = `/#/account/${summonerName}/${tagline}`;
   }
 
   const textFieldInputProps = {

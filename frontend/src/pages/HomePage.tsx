@@ -21,7 +21,7 @@ function HomePage() {
     if (!summonerName) {
       return;
     }
-    window.location.href = `http://localhost:8080/#/account/${summonerName}/${tagline}`;
+    window.location.href = `/#/account/${summonerName}/${tagline}`;
   }
 
   const textFieldInputProps = {
