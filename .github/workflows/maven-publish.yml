@@ -22,17 +22,38 @@ jobs:
           cache: 'maven'
           cache-dependency-path: 'pom.xml'
 
-      - name: Add production key
+      - name: Add Production Key
         run: |
           touch src/main/resources/productionKey.txt
           echo ${{ secrets.RIOT_API_KEY }} >> src/main/resources/productionKey.txt
 
-      - name: Clean with maven
+      - name: Clean with Maven
         run: mvn clean
 
-      - name: Build with maven
+      - name: Build with Maven
         run: mvn -B package --file pom.xml
 
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Docker Image
+        run: docker build -t morenom2698/Fjords-application .
+
+      - name: Publish Image
+        run: docker push morenom2698/Fjords-application:latest
+
+  deploy:
+    needs: build
+    runs-on: [aws-ec2]
+    steps:
+      - name: Pull Image from Docker Hub
+        run: docker pull morenom2698/Fjords-application:latest
+
+      - name: Clean up containers
+        run: docker rm -f fjords-app-container
+
+      - name: Run docker container
+        run: docker run -d -p 8080:8080 --name fjords-app-container morenom2698/Fjords-application
 #  publish:
 #    needs: build
 
