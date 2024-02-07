@@ -46,6 +46,9 @@ jobs:
     needs: build
     runs-on: [aws-ec2-2]
     steps:
+      - name: Prune images
+        run: docker image prune -f
+
       - name: Pull Image from Docker Hub
         run: docker pull morenom2698/fjords-application:latest
 
