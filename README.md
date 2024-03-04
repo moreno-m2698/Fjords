@@ -2,7 +2,7 @@
 
 Fjords is a data visualization web application created to present data from the game League of Legends for its ARAM gamemode. This project was started in November 2023 as a challenge to help myself learn about Java, the Spring Boot framework, GitHub Actions, and Test Driven Design.
 
-If you want to see the product the link can be found [here](http://3.144.102.137:8080/).
+If you want to see the product the link can be found [here](http://fjordsdata.com:443/).
 
 If you don't have an active account:
 - Use "Umbrall" for the summoner name.
