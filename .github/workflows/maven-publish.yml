@@ -44,7 +44,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: [aws-ec2-2]
+    runs-on: [ip-1-1-1-86]
     steps:
       - name: Prune images
         run: docker system prune --all --force
@@ -57,5 +57,3 @@ jobs:
 
       - name: Run docker container
         run: docker run -d -p 8080:443 --name fjords-app-container morenom2698/fjords-application
-
-
