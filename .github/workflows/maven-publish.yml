@@ -56,4 +56,4 @@ jobs:
         run: docker rm -f fjords-app-container
 
       - name: Run docker container
-        run: docker run -d -p 443:8080 --name fjords-app-container morenom2698/fjords-application
+        run: docker run -d -p 80:8080 --name fjords-app-container morenom2698/fjords-application
