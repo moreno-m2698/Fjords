@@ -8,10 +8,10 @@
 		<version>3.1.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>howling-abyss-tool</groupId>
-	<artifactId>howling-abyss-tool-api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>howling-abyss-tool-api</name>
+	<groupId>com.morenom2698.app</groupId>
+	<artifactId>fjords-application</artifactId>
+	<version>1</version>
+	<name>Fjords</name>
 	<description>API for the ARAM stats application</description>
 	<properties>
 		<java.version>17</java.version>
