@@ -1,0 +1,55 @@
+name: Rotate Riot key
+
+# Stores the current RIOT_API_DEVELOPMENT_KEY secret in SSM and restarts the running
+# container with it. No rebuild: reuses the image the container is already running.
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: deploy-prod
+  cancel-in-progress: false
+
+jobs:
+  rotate:
+    runs-on: ubuntu-24.04-arm
+    environment: prod
+    timeout-minutes: 15
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      EC2_INSTANCE_ID: ${{ vars.EC2_INSTANCE_ID }}
+      EC2_PUBLIC_IP: ${{ vars.EC2_PUBLIC_IP }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Store Riot API key in SSM Parameter Store
+        env:
+          RAW_KEY: ${{ secrets.RIOT_API_DEVELOPMENT_KEY }}
+        run: |
+          KEY=$(printf '%s' "$RAW_KEY" | tr -d '\r\n' | sed -E 's/^[[:space:]]*(riot\.api\.key[[:space:]]*=)?[[:space:]]*//; s/[[:space:]]+$//')
+          if [ -z "$KEY" ]; then
+            echo "::error::RIOT_API_DEVELOPMENT_KEY secret is empty or missing in environment 'prod'"
+            exit 1
+          fi
+          aws ssm put-parameter --region "$AWS_REGION" --name /fjords/riot-api-key \
+            --type SecureString --overwrite --value "$KEY" > /dev/null
+          echo "Stored key in /fjords/riot-api-key"
+
+      - name: Restart container with the new key
+        run: |
+          {
+            echo 'IMAGE=$(docker inspect -f "{{.Config.Image}}" fjords)'
+            cat .github/scripts/run-container.sh
+          } > "$RUNNER_TEMP/remote.sh"
+          bash .github/scripts/ssm-run.sh "$RUNNER_TEMP/remote.sh"
+
+      - name: Health check
+        run: bash .github/scripts/health-check.sh

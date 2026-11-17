@@ -1,0 +1,102 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: deploy-prod
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04-arm   # native arm64 so the image matches the t4g host
+    environment: prod           # required: the AWS role trusts only the prod environment subject
+    timeout-minutes: 30
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      EC2_INSTANCE_ID: ${{ vars.EC2_INSTANCE_ID }}
+      EC2_PUBLIC_IP: ${{ vars.EC2_PUBLIC_IP }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Build frontend
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build
+
+      - uses: actions/setup-java@v6
+        with:
+          distribution: corretto
+          java-version: '17'
+          cache: maven
+
+      - name: Build jar (tests skipped, they call the live Riot API)
+        run: mvn -B -DskipTests package
+
+      - uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Log in to ECR
+        id: ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push image
+        id: image
+        env:
+          REGISTRY: ${{ steps.ecr.outputs.registry }}
+          REPOSITORY: ${{ vars.ECR_REPOSITORY }}
+        run: |
+          image="$REGISTRY/$REPOSITORY:$GITHUB_SHA"
+          docker build -t "$image" -t "$REGISTRY/$REPOSITORY:latest" .
+          docker push "$image"
+          docker push "$REGISTRY/$REPOSITORY:latest"
+          echo "image=$image" >> "$GITHUB_OUTPUT"
+
+      - name: Store Riot API key in SSM Parameter Store
+        env:
+          RAW_KEY: ${{ secrets.RIOT_API_DEVELOPMENT_KEY }}
+        run: |
+          KEY=$(printf '%s' "$RAW_KEY" | tr -d '\r\n' | sed -E 's/^[[:space:]]*(riot\.api\.key[[:space:]]*=)?[[:space:]]*//; s/[[:space:]]+$//')
+          if [ -z "$KEY" ]; then
+            echo "::error::RIOT_API_DEVELOPMENT_KEY secret is empty or missing in environment 'prod'"
+            exit 1
+          fi
+          aws ssm put-parameter --region "$AWS_REGION" --name /fjords/riot-api-key \
+            --type SecureString --overwrite --value "$KEY" > /dev/null
+          echo "Stored key in /fjords/riot-api-key"
+
+      - name: Deploy to EC2 via SSM
+        env:
+          IMAGE: ${{ steps.image.outputs.image }}
+        run: |
+          { echo "IMAGE='$IMAGE'"; cat .github/scripts/run-container.sh; } > "$RUNNER_TEMP/remote.sh"
+          bash .github/scripts/ssm-run.sh "$RUNNER_TEMP/remote.sh"
+
+      - name: Health check
+        run: bash .github/scripts/health-check.sh
+
+      - name: Summary
+        env:
+          IMAGE: ${{ steps.image.outputs.image }}
+        run: |
+          {
+            echo "## Deployed"
+            echo "- URL: http://$EC2_PUBLIC_IP/"
+            echo "- Image: \`$IMAGE\`"
+          } >> "$GITHUB_STEP_SUMMARY"

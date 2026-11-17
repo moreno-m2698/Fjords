@@ -1,5 +1,5 @@
-FROM amazoncorretto:17
+FROM amazoncorretto:17-al2023-headless
 WORKDIR /app
-COPY target/howling-abyss-tool-api-0.0.1-SNAPSHOT.jar howling-abyss-tool-api-0.0.1-SNAPSHOT.jar
+COPY target/fjords-application-1.jar /app/app.jar
 EXPOSE 8080
-cmd ["java", "-jar", "howling-abyss-tool-api-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-Xmx384m", "-XX:MaxMetaspaceSize=160m", "-XX:+UseSerialGC", "-Xss512k", "-jar", "/app/app.jar"]
